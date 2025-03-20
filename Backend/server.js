@@ -3,7 +3,11 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const sequelize = require("./database/db");
 const User = require("./database/db");
-const userRoutes = require("./router/userRoutes");
+const userRoutes = require('./router/userRoutes');// esta dando erro
+const path = require('path');
+
+// Verifica o caminho do arquivo
+console.log(path.resolve('./router/userRoutes'));  // Adicione isso para depurar
 
 const app = express();
 const port = 3001;
