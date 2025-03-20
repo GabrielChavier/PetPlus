@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 //Rota de usuários
-app.use("/users",userRouter);
+app.use("/users",userRoutes);
 
 //Rota de login
 app.post("/login", async (req, res) => {
@@ -32,7 +32,7 @@ app.post("/login", async (req, res) => {
 
 // Função para criar o usuário admin inicial
 const createAdminUser = async () => {
-    const adminExists = await User.flindOne({ where: { username: "admin" } });
+    const adminExists = await User.findOne({ where: { username: "admin" } });
     if (!adminExists){
         const hashedPassword = await bcrypt.hast("1234", 10); //criptografia de senha
         await User.creat({
@@ -47,9 +47,9 @@ const createAdminUser = async () => {
 
 //Sincroniza o banco de dados e inicia o servidor
 sequelize.sync()
-    .the(() => {
+    .then(() => {
         //criar o usuário admin ao iniciar o servidor
-        createAdminUser().the(() => {
+        createAdminUser().then(() => {
             app.listen(port, () => {
                 console.log(`Servidor rodando em http://localhost:${port}`);
             });
