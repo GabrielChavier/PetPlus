@@ -8,20 +8,20 @@ const User = sequelize.define("User", {
         autoIncrement: true,
     },
     fullName: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         alowNull: false,
     },
     username: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
     },
     password: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     role: {
-        type: DataType.ENUM("admin", "common"),
+        type: DataTypes.ENUM("admin", "common"),
         allowNull: false,
         defaultValue: "common",
     },
