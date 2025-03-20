@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const sequelize = require("./database/db");
-const User = require("./database/db");
+const User = require("./models/User");
 const userRoutes = require('./router/userRoutes');// esta dando erro
 const path = require('path');
 
@@ -34,11 +34,11 @@ app.post("/login", async (req, res) => {
 const createAdminUser = async () => {
     const adminExists = await User.findOne({ where: { username: "admin" } });
     if (!adminExists){
-        const hashedPassword = await bcrypt.hast("1234", 10); //criptografia de senha
-        await User.creat({
+        const hashedPassword = await bcrypt.hash("1234", 10); //criptografia de senha
+        await User.create({
             fullName:"Administrador",
             username:"admin",
-            passord: hashedPassword,
+            password: hashedPassword,
             role: "admin",
         });
         console.log("Usuário admin criado com succeso!")
