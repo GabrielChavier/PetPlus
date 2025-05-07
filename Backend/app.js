@@ -14,6 +14,9 @@ const ownerRoutes = require('./routes/ownerRoutes');
 // Cria o aplicativo Express
 const app = express();
 
+// Define a porta do servidor (permite sobrescrever via variável de ambiente)
+const PORT = process.env.PORT || 3000; // 👉 Troque aqui a porta se 3000 estiver em uso
+
 // Configuração do Swagger para gerar documentação da API
 const swaggerOptions = {
   definition: {
@@ -33,7 +36,7 @@ const swaggerSpec = swaggerJSDoc(swaggerOptions);
 app.use(express.json());
 
 // Middleware para servir arquivos estáticos, como imagens
-// Exemplo: http://localhost:3000/uploads/foto.jpg
+// Exemplo: http://localhost:3001/uploads/foto.jpg
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Rota de documentação da API gerada pelo Swagger
@@ -50,9 +53,9 @@ sequelize.sync({ force: false }) // force: false → não força a recriação d
   .then(() => {
     console.log('✅ Banco de dados sincronizado com sucesso!');
     
-    // Inicia o servidor na porta 3000 após a sincronização com o banco de dados
-    app.listen(3000, () => {
-      console.log('🚀 Servidor rodando em http://localhost:3000');
+    // Inicia o servidor na porta definida (3001 ou a definida no ambiente)
+    app.listen(PORT, () => {
+      console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
     });
   })
   .catch(err => {

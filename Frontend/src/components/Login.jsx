@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 // Componente de Login que recebe uma função para atualizar o status de autenticação no App principal
 function Login({ updateAuthStatus }) {
   // Estados para armazenar o nome de usuário e a senha digitados pelo usuário
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("gabriel");
+  const [password, setPassword] = useState("123456");
 
   const navigate = useNavigate(); // Hook para redirecionar programaticamente
 
