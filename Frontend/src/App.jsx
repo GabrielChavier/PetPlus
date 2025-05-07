@@ -1,58 +1,83 @@
-// Importa o React para utilizar JSX e criar componentes
+// Importa o React para poder usar JSX e criar componentes
 import React from 'react';
 
-// Importa componentes do React Router para navegação entre páginas
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// Importa os componentes de roteamento do React Router
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Importa o componente da barra lateral que será exibida em todas as páginas
+// Importa o container de notificações da biblioteca react-toastify
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Estilos padrão para as notificações
+
+// Importa os componentes fixos do layout principal
 import Sidebar from './components/Sidebar';
-
-// Importa o cabeçalho que também será exibido em todas as páginas
 import Header from './components/Header';
 
-// Importa as páginas que serão acessadas via rotas
+// Importa a página de login (não deve exibir layout principal)
+import Login from './components/Login';
+
+// Importa as páginas que compõem o conteúdo principal do sistema
 import Dashboard from './pages/Dashboard';
 import Pets from './pages/Pets';
 import Vaccines from './pages/Vaccines';
 import Users from './pages/Users';
 
+// Importa o AuthProvider para gerenciar o contexto de autenticação
+import { AuthProvider } from './context/AuthContext';
+
 // Componente principal da aplicação
 function App() {
   return (
-    // Envolve toda a aplicação com o Router, permitindo o uso de rotas
-    <Router>
-      {/* Layout principal da aplicação usando Flexbox */}
-      <div className="flex h-screen">
-        {/* Componente da barra lateral fixa à esquerda */}
-        <Sidebar />
+    // AuthProvider fornece o contexto de autenticação para toda a aplicação
+    <AuthProvider>
+      <Router>
+        {/* ToastContainer permite exibir notificações "toast" em qualquer parte da aplicação */}
+        <ToastContainer />
 
-        {/* Área da direita (conteúdo principal), ocupa todo o espaço restante */}
-        <div className="flex flex-col flex-1">
-          {/* Componente do cabeçalho (exibido no topo da área principal) */}
-          <Header />
+        {/* Define as rotas da aplicação */}
+        <Routes>
 
-          {/* Conteúdo principal da página. Possui padding e rolagem vertical */}
-          <main className="p-4 overflow-y-auto">
-            {/* Define as rotas da aplicação. Cada rota renderiza um componente específico */}
-            <Routes>
-              {/* Rota para a página inicial, renderiza o Dashboard */}
-              <Route path="/" element={<Dashboard />} />
+          {/* Rota para a página de login - não inclui layout (Header/Sidebar) */}
+          <Route path="/login" element={<Login />} />
 
-              {/* Rota para a página de pets */}
-              <Route path="/pets" element={<Pets />} />
+          {/* Rotas protegidas que usam o layout com Sidebar + Header */}
+          <Route
+            path="/*" // Captura todas as outras rotas exceto "/login"
+            element={
+              <div className="flex h-screen">
+                {/* Barra lateral exibida em todas as rotas autenticadas */}
+                <Sidebar />
 
-              {/* Rota para a página de vacinas */}
-              <Route path="/vaccines" element={<Vaccines />} />
+                {/* Conteúdo principal à direita */}
+                <div className="flex flex-col flex-1">
+                  {/* Cabeçalho fixo no topo */}
+                  <Header />
 
-              {/* Rota para a página de usuários */}
-              <Route path="/users" element={<Users />} />
-            </Routes>
-          </main>
-        </div>
-      </div>
-    </Router>
+                  {/* Área de conteúdo com padding e rolagem vertical */}
+                  <main className="p-4 overflow-y-auto">
+                    <Routes>
+                      {/* Página inicial do painel */}
+                      <Route path="/" element={<Dashboard />} />
+
+                      {/* Página de pets */}
+                      <Route path="/pets" element={<Pets />} />
+
+                      {/* Página de vacinas */}
+                      <Route path="/vaccines" element={<Vaccines />} />
+
+                      {/* Página de usuários */}
+                      <Route path="/users" element={<Users />} />
+                    </Routes>
+                  </main>
+                </div>
+              </div>
+            }
+          />
+
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
-// Exporta o componente App para ser usado no index.js (ponto de entrada da aplicação)
+// Exporta o componente App para ser utilizado no index.js
 export default App;
