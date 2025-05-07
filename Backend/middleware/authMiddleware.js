@@ -1,43 +1,48 @@
+// =========================================
+// authMiddleware.js
+// Middleware de autenticação via JWT
+// =========================================
+
 const jwt = require('jsonwebtoken');
-const SECRET = 'seu_segredo_jwt'; // Em produção, use: process.env.JWT_SECRET
 
-// =====================================
-// Middleware para verificar o token JWT
-// =====================================
-exports.verificarToken = (req, res, next) => {
-  // O token geralmente vem no cabeçalho Authorization: "Bearer <token>"
+// Chave secreta usada para assinar e verificar o token JWT
+// Em produção, utilize uma variável de ambiente: process.env.JWT_SECRET
+const SECRET = 'seu_segredo_jwt';
+
+/**
+ * Middleware responsável por verificar se o token JWT enviado na requisição é válido.
+ * Caso seja válido, o conteúdo do token é armazenado em `req.user`.
+ * Caso contrário, a requisição é bloqueada com erro 401 ou 403.
+ */
+function verificarToken(req, res, next) {
+  // Recupera o cabeçalho de autorização da requisição (Authorization: Bearer <token>)
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // Pega apenas o token (parte após "Bearer")
 
-  // Se não houver token, bloqueia a requisição e retorna erro 401 (não autorizado)
+  // Se o cabeçalho estiver presente, divide a string para obter apenas o token
+  // Exemplo: "Bearer abc123" -> ["Bearer", "abc123"]
+  const token = authHeader && authHeader.split(' ')[1];
+
+  // Se não houver token, responde com erro 401 (não autorizado)
   if (!token) {
     return res.status(401).json({ message: 'Token não fornecido' });
   }
 
-  // Verifica se o token é válido utilizando a chave secreta
+  // Verifica se o token é válido usando a chave secreta
   jwt.verify(token, SECRET, (err, decoded) => {
     if (err) {
-      // Se o token for inválido, retorna erro 403 (proibido)
+      // Se o token for inválido ou expirado, responde com erro 403 (proibido)
       return res.status(403).json({ message: 'Token inválido' });
     }
 
-    // Armazena os dados decodificados do token na requisição
-    // Ex: { id: 123, tipo: 'usuario' }
+    // Se o token for válido, armazena os dados decodificados na requisição
+    // Isso permitirá acessar os dados do usuário autenticado nas próximas rotas (ex: req.user.id)
     req.user = decoded;
-    next(); // Chama o próximo middleware ou função de rota
-  });
-};
 
-// ===================================================
-// Middleware para autorizar somente tipos permitidos
-// Exemplo: autorizarTipos('instituto', 'desenvolvedor')
-// ===================================================
-exports.autorizarTipos = (...tiposPermitidos) => {
-  return (req, res, next) => {
-    // Se o tipo de usuário do token não estiver na lista permitida, bloqueia e retorna erro 403
-    if (!tiposPermitidos.includes(req.user.tipo)) {
-      return res.status(403).json({ message: 'Acesso negado' });
-    }
-    next(); // Chama o próximo middleware ou função de rota
-  };
-};
+    // Continua para o próximo middleware ou função da rota
+    next();
+  });
+}
+
+// Exporta apenas a função verificarToken como middleware principal
+// Isso permite fazer: const auth = require('./authMiddleware');
+module.exports = verificarToken;
