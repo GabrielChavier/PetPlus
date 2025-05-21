@@ -1,92 +1,94 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #028b9d, #07c9b2);
+}
+
 .login-container {
-  background: linear-gradient(to bottom right, #29c7c5, #168f8e);
-  min-height: 100vh;
-  color: white;
-  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
 }
 
 .navbar {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  background: transparent;
+  color: white;
   padding: 20px 40px;
-  align-items: center;
+  font-size: 18px;
 }
 
 .logo {
-  width: 60px;
+  font-weight: bold;
 }
 
-.nav-links a {
-  margin: 0 15px;
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.login-content {
+.nav-links {
+  list-style: none;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 50px;
+  gap: 30px;
 }
 
-.form-card {
-  background: white;
-  color: black;
+.nav-links li {
+  cursor: pointer;
+}
+
+.login-box {
+  background-color: white;
+  border-radius: 15px;
   padding: 30px;
-  border-radius: 20px;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-  min-width: 300px;
+  margin-top: 50px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.form-card h2 {
-  text-align: center;
+.login-box h2 {
   margin-bottom: 20px;
 }
 
-.form-card input {
+.login-box input {
   display: block;
   width: 100%;
-  padding: 10px;
   margin: 10px 0;
-  border: 1px solid #ccc;
+  padding: 10px;
   border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 .options {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
-  margin-bottom: 20px;
+  font-size: 12px;
+  margin: 10px 0;
 }
 
-.options a {
-  color: #168f8e;
-  text-decoration: none;
-}
-
-.btn-login {
-  width: 100%;
-  padding: 10px;
-  background-color: #f4a261;
+.login-button {
+  background-color: orange;
   border: none;
-  color: white;
-  font-weight: bold;
   border-radius: 8px;
+  padding: 10px;
+  width: 100%;
+  font-weight: bold;
+  color: white;
   cursor: pointer;
 }
 
 .signup {
-  text-align: center;
-  margin-top: 15px;
+  margin-top: 10px;
+  font-size: 12px;
 }
 
 .signup a {
-  color: #168f8e;
-  text-decoration: underline;
+  color: #0077cc;
+  text-decoration: none;
 }
 
-.image-area .pets-img {
-  max-width: 280px;
+.pets-image img {
+  position: absolute;
+  bottom: 0;
+  right: 30px;
+  max-height: 250px;
 }
