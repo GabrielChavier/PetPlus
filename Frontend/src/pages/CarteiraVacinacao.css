@@ -1,0 +1,70 @@
+.carteira-container {
+  background: linear-gradient(to bottom right, #29c7c5, #168f8e);
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  align-items: center;
+}
+
+.logo {
+  width: 60px;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.carteira-content {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.card-vacina {
+  background-color: white;
+  color: black;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 1000px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.card-vacina h3 {
+  text-transform: lowercase;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.linha {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.linha input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  flex: 1;
+  min-width: 130px;
+}
+
+.btn-add {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #f48c06;
+  cursor: pointer;
+}

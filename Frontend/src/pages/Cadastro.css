@@ -1,0 +1,88 @@
+.cadastro-container {
+  background: linear-gradient(to bottom right, #29c7c5, #168f8e);
+  min-height: 100vh;
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  align-items: center;
+}
+
+.logo {
+  width: 60px;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.cadastro-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 50px;
+}
+
+.form-card {
+  background: white;
+  color: black;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+  min-width: 300px;
+}
+
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: lowercase;
+}
+
+.form-card input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-area {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #f4a261;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+  margin: 0 5px;
+}
+
+.btn.cancel {
+  background-color: #ccc;
+  color: black;
+}
+
+.pets-img {
+  max-width: 280px;
+}
