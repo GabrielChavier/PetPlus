@@ -1,20 +1,31 @@
-  {
+{
     "name": "petplus",
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-      "test": "jest --rootDir Backend"
+        "test": "jest --rootDir Backend"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/GabrielChavier/PetPlus.git"
+        "type": "git",
+        "url": "git+https://github.com/GabrielChavier/PetPlus.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/GabrielChavier/PetPlus/issues"
+        "url": "https://github.com/GabrielChavier/PetPlus/issues"
     },
     "homepage": "https://github.com/GabrielChavier/PetPlus#readme",
-    "description": ""
-  }
+    "description": "",
+    "dependencies": {
+        "bcrypt": "^6.0.0",
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
+        "jsonwebtoken": "^9.0.2",
+        "multer": "^2.0.0",
+        "sequelize": "^6.37.7",
+        "sqlite3": "^5.1.7",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.1"
+    }
+}

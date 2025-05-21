@@ -1,10 +1,10 @@
-const { Sequelize } = require("sequelize");
 
+const { Sequelize } = require('sequelize');
+
+// Cria conexão com SQLite (armazenado em arquivo local)
 const sequelize = new Sequelize({
-    dialect: "sqlite",
-    storage:"./Backend/db.sqlite", //Arquivo do banco de dados
-    logging: false, //Desativa logs do sequelize
+  dialect: 'sqlite',
+  storage: 'database.sqlite', // ou o caminho completo do arquivo .sqlite
 });
 
 module.exports = sequelize;
-
