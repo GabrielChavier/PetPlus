@@ -1,10 +1,14 @@
-// src/pages/Meupet.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import './all.css';
 import { useNavigate } from 'react-router-dom';
 
 function Meupet() {
   const navigate = useNavigate();
+
+  // Estado para armazenar lista de pets
+  const [pets, setPets] = useState([]);
+  // Estado para guardar o texto da pesquisa
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleNavigationClick = (section) => {
     if (section === 'Cadastrar um Pet') {
@@ -15,13 +19,22 @@ function Meupet() {
       navigate('/adote-um-pet');
     } else if (section === 'Carteira de Vacinação') {
       navigate('/carteira-vacinacao');
-    } else {
-      console.log(`Navegar para: ${section}`);
     }
   };
 
-  const handleSearch = () => {
-    console.log('Search button clicked!');
+  // Função para buscar pets no backend (API)
+  const handleSearch = async () => {
+    try {
+      // Exemplo de URL da API, ajuste conforme sua rota real
+      const response = await fetch(`/api/pets?search=${searchTerm}`);
+      if (!response.ok) {
+        throw new Error('Erro ao buscar pets');
+      }
+      const data = await response.json();
+      setPets(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleAdd = () => {
@@ -48,13 +61,29 @@ function Meupet() {
         <div className="my-pet-section">
           <h2>Meu Pet</h2>
           <div className="search-bar">
-            <input type="text" placeholder="" className="search-input" />
-            <button className="search-button" onClick={handleSearch}>pesquisar</button>
-            <button className="add-button" onClick={handleAdd}>adicionar</button>
+            <input
+              type="text"
+              placeholder="Pesquisar pets..."
+              className="search-input"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button className="search-button" onClick={handleSearch}>Pesquisar</button>
+            <button className="add-button" onClick={handleAdd}>Adicionar</button>
           </div>
-          <div className="pet-images">
-            <img src="https://via.placeholder.com/150x150?text=Dog" alt="Pet 1" className="pet-thumbnail" />
-            <img src="https://via.placeholder.com/150x150?text=Cat" alt="Pet 2" className="pet-thumbnail" />
+
+          <div className="pet-list">
+            {pets.length === 0 && <p>Nenhum pet encontrado.</p>}
+            {pets.map((pet) => (
+              <div key={pet.id} className="pet-item">
+                <img src={pet.image || 'https://via.placeholder.com/150'} alt={pet.name} className="pet-thumbnail" />
+                <div>
+                  <h3>{pet.name}</h3>
+                  <p>{pet.breed}</p>
+                  <p>{pet.age} anos</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </main>

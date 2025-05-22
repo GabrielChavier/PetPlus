@@ -1,43 +1,58 @@
 // Importa os componentes Routes e Route da biblioteca react-router-dom
-// Routes é o contêiner que agrupa todas as rotas da aplicação
-// Route define uma rota individual, associando uma URL a um componente React
+// Routes: contêiner que agrupa todas as rotas da aplicação
+// Route: define uma rota individual, associando uma URL a um componente React
 import { Routes, Route } from 'react-router-dom';
 
-// Importa os componentes de página que serão exibidos nas rotas correspondentes
-import LandingPage from '../pages/LandingPage'; // Página inicial (landing page)
-import Login from '../pages/Login';             // Página de login
-import Cadastro from '../pages/Cadastro';       // Página para cadastro de usuários
-import Dashboard from '../pages/Dashboard';     // Página principal após o login
-import EsqueciSenha from '../pages/EsqueciSenha'; // Importa a nova página EsqueciSenha
-import Meupet from '../pages/Meupet';
-import CadastroPet from '../pages/CadastroPet'
+// Importa os componentes das páginas que serão exibidas em cada rota
+import LandingPage from '../pages/LandingPage';       // Página inicial (landing page)
+import Login from '../pages/Login';                   // Página de login do usuário
+import Cadastro from '../pages/Cadastro';             // Página para cadastro de novos usuários
+import Dashboard from '../pages/Dashboard';           // Página principal após o login (dashboard)
+import EsqueciSenha from '../pages/EsqueciSenha';     // Página para recuperação de senha
+import Meupet from '../pages/Meupet';                 // Página que lista os pets do usuário
+import CadastroPet from '../pages/CadastroPet';       // Página para cadastro de um novo pet
+import CadastroPetAdocao from '../pages/CadastroPetAdocao'; // Página para cadastro de pet para adoção
+import CadastroVacina from '../pages/CadastroVacina'; // Página para cadastro de vacinas dos pets
+import CarteiraVacinacao from '../pages/CarteiraVacinacao'; // Página que mostra a carteira de vacinação do pet
 
-// Define e exporta o componente funcional AppRoutes, responsável por configurar as rotas da aplicação
+// Define e exporta o componente funcional AppRoutes
+// Esse componente é responsável por configurar as rotas da aplicação React
 export default function AppRoutes() {
   return (
-    // Componente Routes agrupa todas as rotas definidas dentro dele
+    // Componente Routes é o contêiner que agrupa todas as rotas definidas abaixo
     <Routes>
       {/* 
-        Cada Route mapeia uma URL para um componente React específico:
-        - path="/" indica a rota raiz da aplicação
-        - element={<LandingPage />} indica que a LandingPage será renderizada quando o usuário acessar "/"
+        Define uma rota para a URL raiz "/"
+        Quando o usuário acessar "/", o componente LandingPage será renderizado
       */}
       <Route path="/" element={<LandingPage />} />
 
+      {/* Rota para listar os pets do usuário */}
       <Route path="/meupet" element={<Meupet />} />
-      {/* Rota para a página de login, acessível pelo caminho "/login" */}
+
+      {/* Rota para a página de login */}
       <Route path="/login" element={<Login />} />
 
-      {/* Rota para a página de cadastro, acessível pelo caminho "/cadastro" */}
+      {/* Rota para a página de cadastro de novos usuários */}
       <Route path="/cadastro" element={<Cadastro />} />
 
-      {/* Rota para a página dashboard, exibida após o login, acessível em "/dashboard" */}
+      {/* Rota para a página dashboard, acessível após o login */}
       <Route path="/dashboard" element={<Dashboard />} />
 
-      {/* Rota para a página de recuperação de senha */}
+      {/* Rota para recuperação de senha */}
       <Route path="/esqueci-senha" element={<EsqueciSenha />} />
 
+      {/* Rota para cadastro de novo pet */}
       <Route path="/cadastro-pet" element={<CadastroPet />} />
+
+      {/* Rota para cadastro de pet para adoção */}
+      <Route path="/cadastro-pet-adocao" element={<CadastroPetAdocao />} />
+
+      {/* Rota para cadastro de vacina */}
+      <Route path="/cadastro-de-vacina" element={<CadastroVacina />} />
+
+      {/* Rota para a carteira de vacinação do pet */}
+      <Route path="/carteira-de-vacinacao" element={<CarteiraVacinacao />} />
     </Routes>
   );
 }

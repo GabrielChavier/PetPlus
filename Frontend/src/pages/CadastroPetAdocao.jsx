@@ -1,5 +1,5 @@
-import './FormPet.css';
-import logo from '../assets/logo.png';
+import './all.css';
+import logo from '../assets/logo.jpeg';
 
 export default function CadastroPetAdocao() {
   return (

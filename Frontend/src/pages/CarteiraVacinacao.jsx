@@ -1,5 +1,5 @@
 import './all.css';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.jpeg';
 import { FaPlusCircle } from 'react-icons/fa';
 
 export default function CarteiraVacinacao() {
