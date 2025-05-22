@@ -1,11 +1,23 @@
-// App.js
+// src/pages/Meupet.jsx
 import React from 'react';
-import './Meupet.css'; // Import the main CSS file
+import './all.css';
+import { useNavigate } from 'react-router-dom';
 
-function App() {
+function Meupet() {
+  const navigate = useNavigate();
+
   const handleNavigationClick = (section) => {
-    console.log(`Navigating to: ${section}`);
-    // In a real application, you would use React Router here to change views
+    if (section === 'Cadastrar um Pet') {
+      navigate('/cadastro-pet');
+    } else if (section === 'Meu Pet') {
+      navigate('/meupet');
+    } else if (section === 'Adote um Pet') {
+      navigate('/adote-um-pet');
+    } else if (section === 'Carteira de Vacinação') {
+      navigate('/carteira-vacinacao');
+    } else {
+      console.log(`Navegar para: ${section}`);
+    }
   };
 
   const handleSearch = () => {
@@ -20,7 +32,6 @@ function App() {
     <div className="app-container">
       <header className="header">
         <div className="logo-container">
-          {/* You would replace 'logo.png' with your actual logo image path */}
           <img src="https://via.placeholder.com/80x80?text=Logo" alt="My Pet Logo" className="logo" />
         </div>
         <nav className="navigation">
@@ -42,7 +53,6 @@ function App() {
             <button className="add-button" onClick={handleAdd}>adicionar</button>
           </div>
           <div className="pet-images">
-            {/* Replace with your actual pet images */}
             <img src="https://via.placeholder.com/150x150?text=Dog" alt="Pet 1" className="pet-thumbnail" />
             <img src="https://via.placeholder.com/150x150?text=Cat" alt="Pet 2" className="pet-thumbnail" />
           </div>
@@ -52,4 +62,4 @@ function App() {
   );
 }
 
-export default App;
+export default Meupet;

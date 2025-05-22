@@ -10,6 +10,7 @@ import Cadastro from '../pages/Cadastro';       // Página para cadastro de usu�
 import Dashboard from '../pages/Dashboard';     // Página principal após o login
 import EsqueciSenha from '../pages/EsqueciSenha'; // Importa a nova página EsqueciSenha
 import Meupet from '../pages/Meupet';
+import CadastroPet from '../pages/CadastroPet'
 
 // Define e exporta o componente funcional AppRoutes, responsável por configurar as rotas da aplicação
 export default function AppRoutes() {
@@ -35,6 +36,8 @@ export default function AppRoutes() {
 
       {/* Rota para a página de recuperação de senha */}
       <Route path="/esqueci-senha" element={<EsqueciSenha />} />
+
+      <Route path="/cadastro-pet" element={<CadastroPet />} />
     </Routes>
   );
 }

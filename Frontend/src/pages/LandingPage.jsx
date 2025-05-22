@@ -1,4 +1,4 @@
-import './LandingPage.css';
+import './all.css';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.jpeg';
 import pets from '../assets/Pet_LandingPage.png'; 

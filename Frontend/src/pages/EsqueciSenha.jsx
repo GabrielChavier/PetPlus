@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './EsqueciSenha.css';
+import './all.css';
 
 export default function EsqueciSenha() {
   const [email, setEmail] = useState('');
