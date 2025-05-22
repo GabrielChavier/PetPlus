@@ -8,6 +8,8 @@ import LandingPage from '../pages/LandingPage'; // Página inicial (landing page
 import Login from '../pages/Login';             // Página de login
 import Cadastro from '../pages/Cadastro';       // Página para cadastro de usuários
 import Dashboard from '../pages/Dashboard';     // Página principal após o login
+import EsqueciSenha from '../pages/EsqueciSenha'; // Importa a nova página EsqueciSenha
+import Meupet from '../pages/Meupet';
 
 // Define e exporta o componente funcional AppRoutes, responsável por configurar as rotas da aplicação
 export default function AppRoutes() {
@@ -21,6 +23,7 @@ export default function AppRoutes() {
       */}
       <Route path="/" element={<LandingPage />} />
 
+      <Route path="/meupet" element={<Meupet />} />
       {/* Rota para a página de login, acessível pelo caminho "/login" */}
       <Route path="/login" element={<Login />} />
 
@@ -29,6 +32,9 @@ export default function AppRoutes() {
 
       {/* Rota para a página dashboard, exibida após o login, acessível em "/dashboard" */}
       <Route path="/dashboard" element={<Dashboard />} />
+
+      {/* Rota para a página de recuperação de senha */}
+      <Route path="/esqueci-senha" element={<EsqueciSenha />} />
     </Routes>
   );
 }

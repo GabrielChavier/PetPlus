@@ -1,0 +1,153 @@
+/* App.css */
+
+/* General Body Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif; /* Using a common sans-serif font */
+  background-color: #f0f0f0; /* A light background for the body */
+}
+
+/* App Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #3cb8b8; /* The turquoise background color */
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the start */
+  padding: 20px;
+  background-color: #3cb8b8; /* Same as app background */
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  margin-right: 40px; /* Space between logo and navigation */
+}
+
+.logo {
+  width: 80px; /* Adjust as needed */
+  height: 80px; /* Adjust as needed */
+  border-radius: 50%; /* Make it round if it's a circular logo */
+  background-color: white; /* Placeholder background for logo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #3cb8b8;
+}
+
+.navigation {
+  flex-grow: 1; /* Allows navigation to take up remaining space */
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start; /* Align navigation items to the left */
+}
+
+.nav-item {
+  margin-right: 30px; /* Space between navigation items */
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+  color: #e0e0e0; /* Lighter color on hover */
+}
+
+/* Main Content Area */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.my-pet-section {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 80%; /* Adjust width as needed */
+  max-width: 800px; /* Max width to prevent it from getting too wide */
+  text-align: center;
+}
+
+.my-pet-section h2 {
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 1.8em;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 15px; /* Space between input and buttons */
+}
+
+.search-input {
+  flex-grow: 1; /* Allows input to take available space */
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  max-width: 400px; /* Limit input width */
+}
+
+.search-button,
+.add-button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+  font-weight: bold;
+}
+
+.search-button {
+  background-color: #ff9900; /* Orange color for search button */
+}
+
+.search-button:hover {
+  background-color: #e68a00; /* Darker orange on hover */
+}
+
+.add-button {
+  background-color: #ff9900; /* Orange color for add button */
+}
+
+.add-button:hover {
+  background-color: #e68a00; /* Darker orange on hover */
+}
+
+/* Pet Images Section */
+.pet-images {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between images */
+  flex-wrap: wrap; /* Allow images to wrap to the next line on smaller screens */
+}
+
+.pet-thumbnail {
+  width: 150px; /* Fixed width for thumbnails */
+  height: 150px; /* Fixed height for thumbnails */
+  object-fit: cover; /* Ensures images cover the area without distortion */
+  border-radius: 10px; /* Slightly rounded corners for images */
+  border: 2px solid #ddd; /* Light border around images */
+}

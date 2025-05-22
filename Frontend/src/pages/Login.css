@@ -92,3 +92,15 @@ body {
   right: 30px;
   max-height: 250px;
 }
+.mensagem-sucesso {
+  margin-top: 15px;
+  color: #2d862d;
+  font-weight: bold;
+  font-size: 16px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -21,22 +21,24 @@ export default function Cadastro() {
 
   // Função para validar formulário no submit
   function handleSubmit(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (!nome || !email || !cidade || !estado || !cep || !senha || !confirmarSenha) {
-      setError('Por favor, preencha todos os campos.');
-      return;
-    }
-
-    if (senha !== confirmarSenha) {
-      setError('As senhas não conferem.');
-      return;
-    }
-
-    setError('');
-    alert('Cadastro realizado com sucesso!');
-    // Aqui você pode adicionar redirecionamento ou envio do formulário
+  if (!nome || !email || !cidade || !estado || !cep || !senha || !confirmarSenha) {
+    setError('Por favor, preencha todos os campos.');
+    return;
   }
+
+  if (senha !== confirmarSenha) {
+    setError('As senhas não conferem.');
+    return;
+  }
+
+  setError('');
+  alert('Cadastro realizado com sucesso!');
+
+  // Redireciona para a página Meupet após o cadastro
+  navigate('/meupet');
+}
 
   return (
     <div className="cadastro-container">
