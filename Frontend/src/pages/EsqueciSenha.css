@@ -1,0 +1,79 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 0%;
+  width: 100%;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom right, #29c7c5, #168f8e);
+}
+
+/* Container principal da tela de recuperação */
+.recuperacao-container {
+  min-height: 00vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: white;
+}
+
+/* Formulário centralizado com fundo branco */
+.recuperacao-container form {
+  background: white;
+  color: black;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Título acima do formulário */
+.recuperacao-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: rgb(2, 2, 2);
+}
+
+/* Campo de input estilizado */
+.recuperacao-container input[type="email"] {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #0c0c0c;
+  width: 100%;
+}
+
+/* Botão de envio */
+.recuperacao-container button {
+  padding: 10px;
+  width: 100%;
+  background-color: #f4a261;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.recuperacao-container button:hover {
+  background-color: #e98b43;
+}
+
+/* Mensagem de feedback (como sucesso ou erro) */
+.recuperacao-container p {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+}

@@ -1,0 +1,153 @@
+/* Remove margens padrão do navegador e define uma fonte padrão para toda a página */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Aplica box-sizing globalmente */
+}
+
+body, html {
+  height: 100%; /* Garante que o body e html ocupem toda a altura da janela */
+  font-family: 'Arial', sans-serif;
+}
+
+/* Container principal da landing page cobrindo 100% da altura da tela com gradiente */
+.landing-container {
+  background: linear-gradient(to bottom right, #29c7c5, #168f8e);
+  min-height: 100vh; /* Altura mínima da tela */
+  width: 100vw; /* Ocupa 100% da largura */
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Barra de navegação no topo */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5em 2em;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* Estilo do logo */
+.logo {
+  width: 60px;
+}
+
+/* Links de navegação */
+.nav-links a {
+  margin: 0 1em;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+/* Conteúdo principal da landing page (centralizado na tela) */
+.landing-content {
+  display: flex;
+  align-items: center;          /* Centraliza verticalmente */
+  justify-content: center;      /* Centraliza horizontalmente */
+  flex-wrap: wrap;
+  flex: 1;                      /* Ocupa o espaço restante da tela */
+  padding: 2em;
+  width: 100%;
+}
+
+/* Texto principal */
+.text-area {
+  max-width: 500px;
+  padding: 1em;
+  text-align: center;
+}
+
+.text-area h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1em;
+  line-height: 1.2;
+}
+
+/* Área dos botões */
+.button-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+.button-area .btn {
+  padding: 0.8em 1.5em;
+  background-color: #f4a261;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+}
+
+.button-area .btn:hover {
+  background-color: #e98b3d;
+}
+
+/* Botão secundário */
+.button-area .btn.secondary {
+  background-color: rgba(244, 162, 97, 0.8);
+}
+
+/* Área da imagem */
+.image-area {
+  max-width: 600px;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+.image-area .pets-img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 15px;
+}
+
+/* Responsividade para tablets e celulares */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .landing-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .text-area h1 {
+    font-size: 2rem;
+  }
+
+  .button-area {
+    flex-direction: column;
+  }
+
+  .image-area {
+    margin-top: 2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-area h1 {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.6em 1.2em;
+  }
+
+  .logo {
+    width: 45px;
+  }
+}

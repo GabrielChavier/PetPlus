@@ -1,0 +1,144 @@
+/* Reset básico e definição global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Container principal cobrindo toda a tela com gradiente */
+.login-container {
+  background: linear-gradient(to bottom right, #29c7c5, #168f8e);
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+/* Barra de navegação no topo */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  width: 100%;
+}
+
+/* Logo da navbar */
+.logo {
+  width: 60px;
+}
+
+/* Links da navbar */
+.nav-links a {
+  margin: 0 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Conteúdo da tela centralizado */
+.login-content {
+  display: flex;
+  justify-content: center;   /* Centraliza horizontalmente */
+  align-items: center;       /* Centraliza verticalmente */
+  flex: 1;                   /* Ocupa o espaço abaixo da navbar */
+  padding: 50px 20px;
+  flex-wrap: wrap;
+  gap: 40px;                 /* Espaço entre imagem e formulário */
+}
+
+/* Cartão do formulário de login */
+.form-card {
+  background: white;
+  color: black;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+  min-width: 300px;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Título do formulário */
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Campos de input */
+.form-card input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Opções abaixo dos campos */
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.options a {
+  color: #168f8e;
+  text-decoration: none;
+}
+
+/* Botão de login */
+.btn-login {
+  width: 100%;
+  padding: 10px;
+  background-color: #f4a261;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Link de cadastro */
+.signup {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.signup a {
+  color: #168f8e;
+  text-decoration: underline;
+}
+
+/* Imagem decorativa */
+.image-area .pets-img {
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .login-content {
+    flex-direction: column;
+    padding: 30px 20px;
+  }
+
+  .form-card {
+    max-width: 90%;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
