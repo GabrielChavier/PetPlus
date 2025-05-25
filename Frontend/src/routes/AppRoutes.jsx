@@ -52,7 +52,7 @@ export default function AppRoutes() {
       <Route path="/cadastro-de-vacina" element={<CadastroVacina />} />
 
       {/* Rota para a carteira de vacinação do pet */}
-      <Route path="/carteira-de-vacinacao" element={<CarteiraVacinacao />} />
+       <Route path="/carteira-vacinacao" element={<CarteiraVacinacao />} />
     </Routes>
   );
 }

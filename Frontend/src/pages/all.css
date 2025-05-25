@@ -480,3 +480,104 @@ a:hover {
 .btn-secondary:hover {
   background-color: #d87a2f;
 }
+
+/* all.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+.carteira-container {
+  max-width: 900px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0077cc;
+  padding: 10px 20px;
+  color: white;
+}
+
+.logo-area .logo {
+  height: 40px;
+  width: auto;
+  border-radius: 5px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #cce4ff;
+}
+
+.carteira-content {
+  padding: 20px 30px;
+}
+
+.card-vacina h3 {
+  text-transform: uppercase;
+  color: #0077cc;
+  margin-bottom: 12px;
+  font-weight: 700;
+  border-bottom: 2px solid #0077cc;
+  padding-bottom: 6px;
+}
+
+.linha {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.linha input[type="date"],
+.linha input[type="text"] {
+  padding: 8px 10px;
+  border: 1.8px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  flex-grow: 1;
+  min-width: 120px;
+  transition: border-color 0.3s ease;
+}
+
+.linha input[type="date"]:focus,
+.linha input[type="text"]:focus {
+  border-color: #0077cc;
+  outline: none;
+}
+
+.btn-add {
+  background-color: transparent;
+  border: none;
+  color: #0077cc;
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  transition: color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.btn-add:hover {
+  color: #004a80;
+}

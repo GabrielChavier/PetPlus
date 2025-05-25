@@ -31,17 +31,7 @@ export default function CarteiraVacinacao() {
             </div>
           ))}
 
-          <h3>vermifugação:</h3>
-          {[1, 2, 3].map((_, idx) => (
-            <div className="linha" key={`vermi-${idx}`}>
-              <input type="date" placeholder="data" />
-              <input type="text" placeholder="dose/peso" />
-              <input type="text" placeholder="produto" />
-              <input type="text" placeholder="veterinário" />
-              <input type="text" placeholder="clínica vet" />
-              <button className="btn-add"><FaPlusCircle /></button>
-            </div>
-          ))}
+
         </div>
       </main>
     </div>
