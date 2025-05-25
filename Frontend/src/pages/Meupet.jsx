@@ -26,7 +26,6 @@ function Meupet() {
   // Função para buscar pets no backend (API)
   const handleSearch = async () => {
     try {
-      // Exemplo de URL da API, ajuste conforme sua rota real
       const response = await fetch(`/api/pets?search=${searchTerm}`);
       if (!response.ok) {
         throw new Error('Erro ao buscar pets');
@@ -42,18 +41,26 @@ function Meupet() {
     navigate('/cadastro-pet-adocao');
   };
 
+  // Função para logout, redireciona para tela de login
+  const handleLogout = () => {
+    // Aqui você pode limpar tokens, dados de sessão etc, se usar autenticação
+    navigate('/login');
+  };
+
   return (
     <div className="app-container">
       <header className="header">
         <div className="logo-area">
-                  <img src={logo} alt="Logo PetPlus" className="logo" />
-                </div>
+          <img src={logo} alt="Logo PetPlus" className="logo" />
+        </div>
         <nav className="navigation">
           <ul className="nav-list">
             <li className="nav-item" onClick={() => handleNavigationClick('Meu Pet')}>Meu Pet</li>
             <li className="nav-item" onClick={() => handleNavigationClick('Cadastrar um Pet')}>Cadastrar um Pet</li>
             <li className="nav-item" onClick={() => handleNavigationClick('Adote um Pet')}>Adote um Pet</li>
             <li className="nav-item" onClick={() => handleNavigationClick('Carteira de Vacinação')}>Carteira de Vacinação</li>
+            {/* Botão Sair */}
+            <li className="nav-item logout-button" onClick={handleLogout}>Sair</li>
           </ul>
         </nav>
       </header>

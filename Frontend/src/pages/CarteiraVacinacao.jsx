@@ -53,7 +53,7 @@ export default function CarteiraVacinacao() {
 
       <main className="carteira-content">
         <div className="card-vacina">
-          <h3>vacinação:</h3>
+          <h3>Vacinação:</h3>
           <div className="linha">
             <input
               type="date"
