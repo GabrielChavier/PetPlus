@@ -15,7 +15,7 @@ export default function CarteiraVacinacao() {
         <Link to="/cadastro-pet">Cadastrar um Pet</Link>
         <Link to="/adote-um-pet">Adote um Pet</Link>
         <Link to="/carteira-vacinacao">Carteira de Vacinação</Link>
-</nav>
+        </nav>
       </header>
 
       <main className="carteira-content">

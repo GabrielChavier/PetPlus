@@ -581,3 +581,22 @@ body {
 .btn-add:hover {
   color: #004a80;
 }
+.pets-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pet-card {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 15px;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.pet-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

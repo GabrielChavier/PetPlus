@@ -38,7 +38,7 @@ function Meupet() {
   };
 
   const handleAdd = () => {
-    console.log('Add button clicked!');
+    navigate('/cadastro-pet-adocao');
   };
 
   return (

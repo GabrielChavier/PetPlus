@@ -33,6 +33,11 @@ function Meupet() {
     }
   };
 
+  useEffect(() => {
+  const petsSalvos = JSON.parse(localStorage.getItem("pets")) || [];
+  setPets(petsSalvos);
+}, []);
+
   // 🔁 Chamada automática ao carregar a página
   useEffect(() => {
     handleSearch();
@@ -78,7 +83,7 @@ function Meupet() {
                   <div>
                     <h3>{pet.name}</h3>
                     <p>{pet.breed}</p>
-                    <p>{pet.age} anos</p>
+                    <p>{pet.age} </p>
                   </div>
                 </div>
               ))
