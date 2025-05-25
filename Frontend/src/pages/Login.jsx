@@ -28,17 +28,6 @@ function Login() {
 
   return (
     <div className="login-container">
-      <nav className="navbar">
-        <div className="logo-area">
-          <img src={logo} alt="Logo PetPlus" className="logo" />
-        </div>
-        <ul className="nav-links">
-          <li>Meu Pet</li>
-          <li>Cadastrar um Pet</li>
-          <li>Adote um Pet</li>
-          <li>Carteira de Vacinação</li>
-        </ul>
-      </nav>
 
       <div className="login-box">
         <h2>Bem-vindo</h2>

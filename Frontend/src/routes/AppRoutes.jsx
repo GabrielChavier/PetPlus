@@ -14,6 +14,7 @@ import CadastroPet from '../pages/CadastroPet';       // Página para cadastro d
 import CadastroPetAdocao from '../pages/CadastroPetAdocao'; // Página para cadastro de pet para adoção
 import CadastroVacina from '../pages/CadastroVacina'; // Página para cadastro de vacinas dos pets
 import CarteiraVacinacao from '../pages/CarteiraVacinacao'; // Página que mostra a carteira de vacinação do pet
+import Adotepet from '../pages/Adotepet';
 
 // Define e exporta o componente funcional AppRoutes
 // Esse componente é responsável por configurar as rotas da aplicação React
@@ -53,6 +54,9 @@ export default function AppRoutes() {
 
       {/* Rota para a carteira de vacinação do pet */}
        <Route path="/carteira-vacinacao" element={<CarteiraVacinacao />} />
+
+       {/* Rota para adocao de pet */}
+       <Route path="/adote-um-pet" element={<Adotepet />} />
     </Routes>
   );
 }

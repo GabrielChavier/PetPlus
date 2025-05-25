@@ -6,17 +6,6 @@ import pets from '../assets/Pet_LandingPage.png';
 export default function LandingPage() {
   return (
     <div className="landing-container">
-      <header className="navbar">
-        <div className="logo-area">
-          <img src={logo} alt="PetPlus Logo" className="logo" />
-        </div>
-        <nav className="nav-links">
-          <a href="#">Início</a>
-          <a href="#">Cadastrar um Pet</a>
-          <a href="#">Adote um Pet</a>
-          <a href="#">Carteira de Vacinação</a>
-        </nav>
-      </header>
 
       <main className="landing-content">
         <div className="text-area">

@@ -1,6 +1,7 @@
 import './all.css';
 import logo from '../assets/logo.jpeg';
 import { FaPlusCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export default function CarteiraVacinacao() {
   return (
@@ -10,11 +11,11 @@ export default function CarteiraVacinacao() {
           <img src={logo} alt="Logo PetPlus" className="logo" />
         </div>
         <nav className="nav-links">
-          <a href="#">Início</a>
-          <a href="#">Cadastrar um Pet</a>
-          <a href="#">Adote um Pet</a>
-          <a href="#">Carteira de Vacinação</a>
-        </nav>
+        <Link to="/meupet">Meu Pet</Link>
+        <Link to="/cadastro-pet">Cadastrar um Pet</Link>
+        <Link to="/adote-um-pet">Adote um Pet</Link>
+        <Link to="/carteira-vacinacao">Carteira de Vacinação</Link>
+</nav>
       </header>
 
       <main className="carteira-content">
@@ -30,7 +31,6 @@ export default function CarteiraVacinacao() {
               <button className="btn-add"><FaPlusCircle /></button>
             </div>
           ))}
-
 
         </div>
       </main>

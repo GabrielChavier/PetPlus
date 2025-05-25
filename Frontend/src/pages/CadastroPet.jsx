@@ -99,7 +99,7 @@ export default function CadastroPet() {
       <header className="navbar">
         <img src={logo} alt="PetPlus" className="logo" />
         <nav className="nav-links">
-          <Link to="/">Início</Link>
+          <Link to="/meupet">Meu Pet</Link>
           <Link to="/cadastro-pet">Cadastrar um Pet</Link>
           <Link to="/adote-um-pet">Adote um Pet</Link>
           <Link to="/carteira-vacinacao">Carteira de Vacinação</Link>

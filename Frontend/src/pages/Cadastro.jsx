@@ -42,17 +42,6 @@ export default function Cadastro() {
 
   return (
     <div className="cadastro-container">
-      <header className="navbar">
-        <div className="logo-area">
-          <img src={logo} alt="Logo PetPlus" className="logo" />
-        </div>
-        <nav className="nav-links">
-          <a href="#">Início</a>
-          <a href="#">Cadastrar um Pet</a>
-          <a href="#">Adote um Pet</a>
-          <a href="#">Carteira de Vacinação</a>
-        </nav>
-      </header>
 
       <main className="cadastro-content">
         <div className="image-area">
