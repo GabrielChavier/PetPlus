@@ -1,0 +1,150 @@
+/* Reset básico */
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: transparent;
+  font-size: 18px;
+}
+
+.logo-area img.logo {
+  width: 150px;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #29c7c5;
+}
+
+/* Conteúdo principal do formulário */
+.form-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0;
+}
+
+.form-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.form-box {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-box h2 {
+  text-transform: lowercase;
+  margin-bottom: 20px;
+  color: #168f8e;
+}
+
+/* Inputs */
+.form-box input[type="text"],
+.form-box textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  resize: vertical;
+}
+
+.form-box textarea {
+  min-height: 80px;
+}
+
+/* Linha com inputs lado a lado */
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.row input[type="text"],
+.row textarea {
+  flex: 1;
+}
+
+/* Botão upload foto */
+.upload-btn {
+  background-color: #29c7c5;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: center;
+}
+
+/* Botões da área final */
+.btn-area {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #29c7c5;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn.cancel {
+  background-color: #ccc;
+  color: #333;
+}
+
+.btn:hover {
+  background-color: #168f8e;
+}
+
+.btn.cancel:hover {
+  background-color: #999;
+}
+
+/* Pré-visualização da imagem */
+img[alt="Pré-visualização"] {
+  margin-top: 10px;
+  max-width: 200px;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Texto da imagem selecionada */
+p {
+  margin-top: 5px;
+  font-style: italic;
+}

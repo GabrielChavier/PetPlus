@@ -1,0 +1,81 @@
+.header {
+  display: flex; /* usa flexbox para organizar os itens em linha */
+  justify-content: space-between; /* espaço máximo entre os itens (logo e navegação) */
+  align-items: center; /* alinha verticalmente os itens ao centro */
+  padding: 10px 40px; /* espaçamento interno: 10px vertical, 40px horizontal */
+  background-color: #fff; /* fundo branco */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* sombra leve abaixo da header para profundidade */
+}
+
+.logo {
+  width: 80px; /* largura fixa para o logo */
+}
+
+.navigation .nav-list {
+  display: flex; /* organiza os itens da navegação em linha */
+  gap: 20px; /* espaçamento entre os links */
+  list-style: none; /* remove os marcadores padrão da lista */
+  padding: 0; /* remove padding padrão da lista */
+  margin: 0; /* remove margem padrão da lista */
+}
+
+.nav-item {
+  cursor: pointer; /* muda o cursor para indicar que é clicável */
+  color: white;  /* texto branco para contraste */
+  transition: color 0.3s ease; /* transição suave ao mudar cor (ex: no hover) */
+}
+
+.main-content {
+  padding: 40px; /* espaçamento interno em todo o conteúdo principal */
+  background-color: #f9f9f9; /* fundo cinza claro para destacar do header */
+}
+
+.my-pet-section h2 {
+  margin-bottom: 20px; /* espaçamento abaixo do título para separar do conteúdo */
+}
+
+.search-bar {
+  display: flex; /* barra de busca com elementos alinhados em linha */
+  gap: 10px; /* espaçamento entre input e botões */
+  margin-bottom: 30px; /* espaço abaixo da barra de busca */
+}
+
+.search-input {
+  flex: 1; /* ocupa o máximo possível de espaço dentro do container flex */
+  padding: 10px; /* espaçamento interno para conforto na digitação */
+  border-radius: 8px; /* bordas arredondadas para suavidade visual */
+  border: 1px solid #ccc; /* borda cinza clara */
+}
+
+.search-button,
+.add-button {
+  padding: 10px 20px; /* espaçamento interno dos botões */
+  border: none; /* remove bordas padrão */
+  background-color: #168f8e; /* cor azul-esverdeada para destaque */
+  color: white; /* texto branco para contraste */
+  border-radius: 8px; /* bordas arredondadas */
+  cursor: pointer; /* cursor em formato de mão para indicar clicável */
+}
+
+.pet-list {
+  display: flex; /* exibe os pets em linha */
+  flex-wrap: wrap; /* permite quebra de linha se não couber na largura */
+  gap: 20px; /* espaço entre os itens */
+}
+
+.pet-item {
+  background-color: white; /* fundo branco para cada card de pet */
+  border-radius: 10px; /* bordas arredondadas para suavidade */
+  padding: 15px; /* espaçamento interno do card */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* sombra leve para efeito de elevação */
+  display: flex; /* usa flex para alinhar imagem e texto lado a lado */
+  gap: 15px; /* espaço entre a imagem e as informações */
+  width: 300px; /* largura fixa do card */
+}
+
+.pet-thumbnail {
+  width: 100px; /* largura da imagem do pet */
+  height: 100px; /* altura da imagem do pet */
+  object-fit: cover; /* garante que a imagem preencha o espaço sem distorcer */
+  border-radius: 8px; /* bordas arredondadas na imagem */
+}

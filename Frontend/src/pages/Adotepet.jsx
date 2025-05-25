@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'; // useEffect adicionado
-import './all.css';
+import './Adotepet.css';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.jpeg';
 
 function Meupet() {
   const navigate = useNavigate();
@@ -46,9 +47,9 @@ function Meupet() {
   return (
     <div className="app-container">
       <header className="header">
-        <div className="logo-container">
-          <img src="https://via.placeholder.com/80x80?text=Logo" alt="My Pet Logo" className="logo" />
-        </div>
+        <div className="logo-area">
+                  <img src={logo} alt="Logo PetPlus" className="logo" />
+                </div>
         <nav className="navigation">
           <ul className="nav-list">
             <li className="nav-item" onClick={() => handleNavigationClick('Meu Pet')}>Meu Pet</li>

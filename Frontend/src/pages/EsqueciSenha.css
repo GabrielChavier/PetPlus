@@ -27,7 +27,7 @@ html, body {
 /* Formulário centralizado com fundo branco */
 .recuperacao-container form {
   background: white;
-  color: black;
+  color: rgb(0, 0, 0);
   padding: 30px;
   border-radius: 20px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);

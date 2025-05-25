@@ -12,7 +12,7 @@ export default function LandingPage() {
           <h1>PetPlus seu<br />aplicativo completo<br />para cuidar da<br />saúde e bem-estar<br />do seu pet.</h1>
           <div className="button-area">
             <Link to="/login" className="btn">Entrar</Link>
-            <Link to="/cadastro" className="btn secondary">cadastre-se</Link>
+            <Link to="/cadastro" className="btn secondary">cadastro</Link>
           </div>
         </div>
         <div className="image-area">

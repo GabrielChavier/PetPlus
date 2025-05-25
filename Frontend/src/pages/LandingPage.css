@@ -1,153 +1,155 @@
-/* Remove margens padrão do navegador e define uma fonte padrão para toda a página */
+/* Reset básico para garantir consistência entre navegadores */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* Aplica box-sizing globalmente */
+  box-sizing: border-box; /* Inclui padding e border no tamanho total dos elementos */
 }
 
+/* Define altura total da página e fonte padrão */
 body, html {
-  height: 100%; /* Garante que o body e html ocupem toda a altura da janela */
-  font-family: 'Arial', sans-serif;
+  height: 100%;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background-color: #29c7c5; /* Cor base do fundo */
+  overflow-x: hidden; /* Impede rolagem horizontal */
 }
 
-/* Container principal da landing page cobrindo 100% da altura da tela com gradiente */
+/* Container principal da landing page */
 .landing-container {
-  background: linear-gradient(to bottom right, #29c7c5, #168f8e);
-  min-height: 100vh; /* Altura mínima da tela */
-  width: 100vw; /* Ocupa 100% da largura */
-  color: white;
+  background: linear-gradient(to bottom right, #29c7c5, #168f8e); /* Degradê suave */
+  min-height: 100vh; /* Ocupa 100% da altura da tela */
+  width: 100vw;      /* Ocupa 100% da largura da tela */
+  color: white;      /* Cor do texto */
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Elementos empilhados verticalmente */
 }
 
-/* Barra de navegação no topo */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5em 2em;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-/* Estilo do logo */
-.logo {
-  width: 60px;
-}
-
-/* Links de navegação */
-.nav-links a {
-  margin: 0 1em;
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1em;
-}
-
-/* Conteúdo principal da landing page (centralizado na tela) */
+/* Área de conteúdo centralizado */
 .landing-content {
+  flex: 1; /* Ocupa o espaço restante vertical */
   display: flex;
-  align-items: center;          /* Centraliza verticalmente */
-  justify-content: center;      /* Centraliza horizontalmente */
-  flex-wrap: wrap;
-  flex: 1;                      /* Ocupa o espaço restante da tela */
-  padding: 2em;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;     /* Permite quebra para mobile */
+  padding: 4vw;        /* Espaçamento proporcional à tela */
+  gap: 3vw;            /* Espaço entre os blocos */
   width: 100%;
 }
 
-/* Texto principal */
+/* Bloco de texto com efeito translúcido */
 .text-area {
-  max-width: 500px;
-  padding: 1em;
+  max-width: 600px;
   text-align: center;
+  padding: 2em;
+  background-color: rgba(255, 255, 255, 0.05); /* Fundo branco com transparência */
+  border-radius: 20px;
+  backdrop-filter: blur(5px); /* Efeito "vidro fosco" */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Sombra leve */
 }
 
+/* Título principal */
 .text-area h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1em;
-  line-height: 1.2;
+  font-size: 3rem;
+  line-height: 1.3;
+  margin-bottom: 1.2em;
 }
 
-/* Área dos botões */
+/* Parágrafo explicativo */
+.text-area p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Área de botões */
 .button-area {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1em;
-  margin-top: 1em;
+  gap: 0.8em;
+  margin-top: 1.5em;
 }
 
+/* Estilo base dos botões */
 .button-area .btn {
-  padding: 0.8em 1.5em;
-  background-color: #f4a261;
+  padding: 0.45em 1em; /* Botão mais compacto */
+  background-color: #f4a261; /* Laranja claro */
   color: white;
   text-decoration: none;
-  border-radius: 20px;
-  font-weight: bold;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-  transition: background-color 0.3s ease;
+  border-radius: 18px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2); /* Sombra discreta */
+  transition: all 0.3s ease;
 }
 
+/* Efeito ao passar o mouse nos botões */
 .button-area .btn:hover {
-  background-color: #e98b3d;
+  background-color: #e98b3d; /* Tom mais escuro */
+  transform: translateY(-1px); /* Elevação sutil */
+  box-shadow: 0 5px 14px rgba(0,0,0,0.25); /* Sombra mais forte */
 }
 
-/* Botão secundário */
+/* Variação de botão secundário */
 .button-area .btn.secondary {
   background-color: rgba(244, 162, 97, 0.8);
 }
 
-/* Área da imagem */
+/* Bloco da imagem */
 .image-area {
   max-width: 600px;
-  padding: 1em;
+  padding: 2em;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
+/* Imagem responsiva e estilizada */
 .image-area .pets-img {
   width: 100%;
   max-width: 600px;
   height: auto;
-  border-radius: 15px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
-/* Responsividade para tablets e celulares */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    gap: 1em;
+/* Responsividade para telas até 1024px */
+@media (max-width: 1024px) {
+  .landing-content {
+    flex-direction: column; /* Empilha os elementos */
+    text-align: center;
   }
 
-  .landing-content {
-    flex-direction: column;
-    text-align: center;
+  .text-area h1 {
+    font-size: 2.5rem; /* Reduz o título */
+  }
+
+  .image-area {
+    margin-top: 2em; /* Espaço extra após o texto */
+  }
+}
+
+/* Ajustes para telas pequenas (até 600px) */
+@media (max-width: 600px) {
+  .text-area {
+    padding: 1.5em;
   }
 
   .text-area h1 {
     font-size: 2rem;
   }
 
+  .text-area p {
+    font-size: 1rem;
+  }
+
   .button-area {
-    flex-direction: column;
-  }
-
-  .image-area {
-    margin-top: 2em;
-  }
-}
-
-@media (max-width: 480px) {
-  .text-area h1 {
-    font-size: 1.8rem;
+    flex-direction: column; /* Empilha botões */
+    align-items: center;
+    gap: 0.6em;
   }
 
   .btn {
-    font-size: 0.9rem;
-    padding: 0.6em 1.2em;
-  }
-
-  .logo {
-    width: 45px;
+    font-size: 0.85rem;
+    padding: 0.5em 1em;
+    border-radius: 16px;
   }
 }

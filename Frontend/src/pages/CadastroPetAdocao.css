@@ -1,0 +1,144 @@
+/* Reset básico e estilos globais */
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Navbar: barra de navegação principal */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px; /* Ajustado para um espaçamento comum */
+  background: transparent;
+  font-size: 18px;
+}
+
+/* Logo da navbar */
+.logo {
+  width: 200px;
+}
+
+/* Links da navbar */
+.nav-links a {
+  margin: 0 15px;
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Container principal do formulário */
+.form-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Área do conteúdo do formulário */
+.form-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Caixa do formulário */
+.form-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Título do formulário */
+.form-box h2 {
+  text-transform: lowercase;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+/* Linha com dois inputs lado a lado */
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Inputs básicos */
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Área de upload */
+.upload-area {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botão para upload */
+.upload-btn {
+  background-color: #29c7c5;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 22px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-btn:hover {
+  background-color: #168f8e;
+}
+
+/* Área dos botões */
+.btn-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Botões gerais */
+.btn {
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* Botão cancelar */
+.btn.cancel {
+  background-color: #ccc;
+  color: #333;
+}
+
+.btn.cancel:hover {
+  background-color: #aaa;
+}
+
+/* Botão cadastrar */
+.btn:not(.cancel) {
+  background-color: #29c7c5;
+  color: white;
+}
+
+.btn:not(.cancel):hover {
+  background-color: #168f8e;
+}

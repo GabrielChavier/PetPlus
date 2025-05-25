@@ -1,0 +1,132 @@
+/* Container principal ocupando toda a tela */
+.cadastro-container {
+  background: linear-gradient(to bottom right, #29c7c5, #168f8e); /* Gradiente azul-esverdeado de canto superior esquerdo ao inferior direito */
+  min-height: 100vh; /* Altura mínima igual à altura total da janela (viewport) */
+  width: 100vw; /* Largura total da janela (viewport) */
+  color: white; /* Cor padrão do texto */
+  font-family: 'Arial', sans-serif; /* Fonte padrão do texto */
+  display: flex; /* Ativa o Flexbox para alinhar o conteúdo */
+  justify-content: center; /* Centraliza horizontalmente o conteúdo */
+  align-items: center; /* Centraliza verticalmente o conteúdo */
+  padding: 2vw; /* Espaçamento interno proporcional à largura da tela */
+}
+
+/* Conteúdo centralizado no meio da tela */
+.cadastro-content {
+  display: flex; /* Ativa o Flexbox para os elementos internos */
+  justify-content: center; /* Alinha os filhos no centro horizontalmente */
+  align-items: center; /* Alinha os filhos no centro verticalmente */
+  flex-wrap: wrap; /* Permite que os elementos quebrem para a próxima linha em telas menores */
+  gap: 3vw; /* Espaçamento horizontal/vertical entre os elementos filhos */
+  width: 100%; /* Usa toda a largura disponível */
+  max-width: 1200px; /* Limita a largura máxima para manter o layout agradável */
+}
+
+/* Área da imagem */
+.image-area {
+  flex: 1; /* Ocupa um espaço proporcional dentro do Flexbox */
+  display: flex; /* Ativa Flexbox na área da imagem */
+  justify-content: center; /* Centraliza a imagem horizontalmente */
+  align-items: center; /* Centraliza a imagem verticalmente */
+}
+
+/* Imagem de pets */
+.pets-img {
+  max-width: 280px; /* Largura máxima da imagem */
+  width: 100%; /* Escala a imagem para ocupar todo o espaço disponível */
+  height: auto; /* Mantém a proporção original da imagem */
+}
+
+/* Cartão do formulário */
+.form-card {
+  background: white; /* Fundo branco do cartão */
+  color: black; /* Cor do texto */
+  padding: 30px; /* Espaçamento interno */
+  border-radius: 20px; /* Bordas arredondadas */
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1); /* Sombra leve ao redor do cartão */
+  min-width: 300px; /* Largura mínima */
+  width: 100%; /* Largura total possível */
+  max-width: 400px; /* Largura máxima do cartão */
+  flex: 1; /* Ocupa espaço proporcional dentro do Flexbox */
+}
+
+/* Título do formulário */
+.form-card h2 {
+  text-align: center; /* Centraliza o texto */
+  margin-bottom: 20px; /* Espaço abaixo do título */
+  text-transform: lowercase; /* Transforma todo o texto para letras minúsculas */
+}
+
+/* Campos de entrada do formulário */
+.form-card input {
+  display: block; /* Ocupa uma linha inteira */
+  width: 100%; /* Largura total do container */
+  padding: 10px; /* Espaçamento interno */
+  margin: 8px 0; /* Espaço vertical entre os campos */
+  border: 1px solid #ccc; /* Borda cinza clara */
+  border-radius: 8px; /* Bordas arredondadas */
+}
+
+/* Linha de inputs lado a lado */
+.row {
+  display: flex; /* Organiza os elementos da linha com Flexbox */
+  gap: 10px; /* Espaço entre os elementos */
+}
+
+/* Área onde ficam os botões */
+.btn-area {
+  display: flex; /* Usa Flexbox para os botões */
+  justify-content: space-between; /* Espaço uniforme entre os botões */
+  margin-top: 20px; /* Espaçamento acima da área dos botões */
+}
+
+/* Estilização dos botões */
+.btn {
+  padding: 10px 20px; /* Espaçamento interno */
+  background-color: #4e2a0c; /* Cor de fundo laranja */
+  color: white; /* Texto branco */
+  border: none; /* Remove a borda padrão */
+  border-radius: 8px; /* Bordas arredondadas */
+  font-weight: bold; /* Texto em negrito */
+  cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+  flex: 1; /* Ocupa espaço proporcionalmente */
+  margin: 0 5px; /* Espaço horizontal entre os botões */
+  transition: background-color 0.3s ease; /* Animação suave ao mudar a cor no hover */
+}
+
+/* Cor de fundo alterada ao passar o mouse */
+.btn:hover {
+  background-color: #e98b3d; /* Cor de hover mais escura */
+}
+
+/* Estilização específica para o botão de cancelar */
+.btn.cancel {
+  background-color: #ccc; /* Cinza claro */
+  color: black; /* Texto preto */
+}
+
+/* Hover do botão de cancelar */
+.btn.cancel:hover {
+  background-color: #bbb; /* Cinza um pouco mais escuro */
+}
+
+/* Estilos para dispositivos com largura menor ou igual a 768px */
+@media (max-width: 768px) {
+  .cadastro-content {
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    align-items: center; /* Centraliza os itens na vertical */
+  }
+
+  .image-area {
+    margin-bottom: 2em; /* Espaço abaixo da imagem */
+  }
+
+  .btn-area {
+    flex-direction: column; /* Botões empilhados verticalmente */
+    gap: 10px; /* Espaço entre eles */
+  }
+
+  .btn {
+    margin: 0; /* Remove a margem lateral */
+  }
+}
