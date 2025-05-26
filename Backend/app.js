@@ -1,6 +1,7 @@
 // Importa as dependências do Express, Path e outros módulos necessários
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const sequelize = require('./config/db'); // Conexão com o banco de dados via Sequelize (SQLite)
@@ -9,7 +10,6 @@ const sequelize = require('./config/db'); // Conexão com o banco de dados via S
 const authRoutes = require('./routes/authRoutes');
 const petRoutes = require('./routes/petRoutes');
 const vaccineRoutes = require('./routes/vaccineRoutes');
-const ownerRoutes = require('./routes/ownerRoutes');
 
 // Cria o aplicativo Express
 const app = express();
@@ -35,6 +35,10 @@ const swaggerSpec = swaggerJSDoc(swaggerOptions);
 // Middleware para interpretar requisições com corpo JSON
 app.use(express.json());
 
+app.use(cors({
+  origin: 'http://localhost:5173' // coloque aqui a URL que seu frontend roda
+}));
+
 // Middleware para servir arquivos estáticos, como imagens
 // Exemplo: http://localhost:3001/uploads/foto.jpg
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -46,7 +50,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/auth', authRoutes);         // Rota para autenticação de usuários
 app.use('/api/pets', petRoutes);          // Rota para gestão de pets
 app.use('/api/vaccines', vaccineRoutes);  // Rota para controle de vacinas
-app.use('/api/owners', ownerRoutes);      // Rota para informações dos donos
 
 // Sincroniza os modelos Sequelize com o banco de dados
 sequelize.sync({ force: false }) // force: false → não força a recriação das tabelas, preservando dados existentes

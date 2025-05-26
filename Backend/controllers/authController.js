@@ -66,10 +66,11 @@ exports.login = async (req, res) => {
 
     // Geração do token JWT com o ID e tipo do usuário
     const token = jwt.sign(
-      { id: user.id, tipo: user.tipo },
-      SECRET,
-      { expiresIn: '2h' } // Expira em 2 horas
-    );
+  { id: user.id, tipo: user.tipo },
+  SECRET,
+  { expiresIn: '2h' }
+);
+
 
     // Retorna o token para o cliente
     res.json({

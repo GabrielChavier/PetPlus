@@ -39,20 +39,47 @@ export default function CadastroPetAdocao() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newPet = {
-      id: Date.now(),
-      ...formData,
-      foto: previewUrl || "https://via.placeholder.com/150",
-    };
+    const token = localStorage.getItem("token");
 
-    const existingPets = JSON.parse(localStorage.getItem("pets")) || [];
-    localStorage.setItem("pets", JSON.stringify([...existingPets, newPet]));
+    if (!token) {
+      alert("Você precisa estar logado para cadastrar um pet.");
+      return;
+    }
 
-    alert("🐶 Cadastro realizado com sucesso!");
-    navigate("/adote-um-pet");
+    const form = new FormData();
+    form.append("name", formData.nome);
+    form.append("species", formData.especie);
+    form.append("breed", formData.raca);
+    form.append("gender", formData.sexo);
+    form.append("age", formData.idade);
+    form.append("phone", formData.telefone);
+    form.append("location", formData.local);
+    form.append("bio", formData.bio);
+    if (foto) form.append("photo", foto);
+
+    try {
+      const response = await fetch("http://localhost:3000/api/pets", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: form,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Erro ao cadastrar pet");
+      }
+
+      alert("🐶 Pet cadastrado com sucesso!");
+      navigate("/adote-um-pet");
+    } catch (error) {
+      alert("Erro: " + error.message);
+    }
   };
 
   return (
@@ -62,10 +89,10 @@ export default function CadastroPetAdocao() {
           <img src={logo} alt="Logo PetPlus" className="logo" />
         </div>
         <nav className="nav-links">
-        <Link to="/meupet">Meu Pet</Link>
-        <Link to="/cadastro-pet">Cadastrar um Pet</Link>
-        <Link to="/adote-um-pet">Adote um Pet</Link>
-        <Link to="/carteira-vacinacao">Carteira de Vacinação</Link>
+          <Link to="/meupet">Meu Pet</Link>
+          <Link to="/cadastro-pet">Cadastrar um Pet</Link>
+          <Link to="/adote-um-pet">Adote um Pet</Link>
+          <Link to="/carteira-vacinacao">Carteira de Vacinação</Link>
         </nav>
       </header>
 

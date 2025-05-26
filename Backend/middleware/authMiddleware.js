@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 
 // Chave secreta usada para assinar e verificar o token JWT
 // Em produção, utilize uma variável de ambiente: process.env.JWT_SECRET
-const SECRET = 'seu_segredo_jwt';
+const SECRET = process.env.JWT_SECRET || 'seu_segredo_jwt';
 
 /**
  * Middleware responsável por verificar se o token JWT enviado na requisição é válido.

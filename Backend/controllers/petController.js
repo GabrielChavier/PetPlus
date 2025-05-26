@@ -5,8 +5,9 @@ module.exports = {
   // Cadastrar novo pet
   // ================================
   createPet: async (req, res) => {
-    const { name, species, breed, gender, age, ownerId } = req.body;
+    const { name, species, breed, gender, age } = req.body;
     const photo = req.file ? req.file.filename : null; // Verifica se foi enviada uma imagem
+    const userId = req.user.id;
 
     try {
       const pet = await Pet.create({
@@ -16,7 +17,7 @@ module.exports = {
         gender,
         age,
         photo,
-        ownerId,
+        userId,
         adopted: false // Pet começa como disponível para adoção
       });
 

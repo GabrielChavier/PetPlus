@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from '../assets/logo.jpeg';
 import pets from '../assets/Pet_LandingPage.png';
 import React, { useState } from "react";
+localStorage.setItem("token", data.token);
+
 
 function Login() {
   const [usuario, setUsuario] = useState('');
