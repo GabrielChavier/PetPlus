@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './Meupet.css';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.jpeg';
-import { API_BASE } from '../api'; // ✅ Importando a constante API_BASE
 
 function Meupet() {
   const navigate = useNavigate();

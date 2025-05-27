@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './PetDetalhes.css';
-import { API_BASE } from '../api'; // <-- Importa a constante da base da API
 
 const PetDetalhes = () => {
   const { id } = useParams();

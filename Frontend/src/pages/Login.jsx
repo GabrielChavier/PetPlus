@@ -1,9 +1,7 @@
 import './Login.css';
 import { Link, useNavigate } from "react-router-dom";
-import logo from '../assets/logo.jpeg';
 import pets from '../assets/Pet_LandingPage.png';
 import React, { useState } from "react";
-import api from '../api'; // ✅ Importa o Axios com interceptor de token
 
 function Login() {
   const [usuario, setUsuario] = useState('');
@@ -11,7 +9,7 @@ function Login() {
   const [mensagem, setMensagem] = useState('');
   const navigate = useNavigate();
 
-  async function handleLogin(e) {
+  function handleLogin(e) {
     e.preventDefault();
 
     if (!usuario || !senha) {
@@ -19,30 +17,12 @@ function Login() {
       return;
     }
 
-    try {
-      const res = await api.post('/login', {
-        email: usuario,
-        senha: senha,
-      });
+    // Simula login bem-sucedido sem autenticação real
+    setMensagem("✅ Login realizado com sucesso!");
 
-      if (!res.data.token) {
-        throw new Error("Token não recebido.");
-      }
-
-      // ✅ Armazenar o token no localStorage
-      localStorage.setItem("token", res.data.token);
-
-      setMensagem("✅ Login realizado com sucesso!");
-
-      setTimeout(() => {
-        navigate('/meupet');
-      }, 2000);
-
-    } catch (err) {
-      console.error("Erro ao fazer login:", err);
-      const mensagemErro = err.response?.data?.message || "Erro ao fazer login.";
-      setMensagem("❌ " + mensagemErro);
-    }
+    setTimeout(() => {
+      navigate('/meupet');
+    }, 1000);
   }
 
   return (

@@ -3,7 +3,6 @@ import './CadastroPet.css';
 import logo from "../assets/logo.jpeg";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import { API_BASE } from '../api';  // Importa API_BASE aqui
 
 export default function CadastroPetAdocao() {
   const [foto, setFoto] = useState(null);

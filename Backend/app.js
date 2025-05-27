@@ -12,7 +12,6 @@ const petRoutes = require('./routes/petRoutes');
 const vaccineRoutes = require('./routes/vaccineRoutes');
 
 // Importa middleware de autenticação (authMiddleware)
-const auth = require('./middleware/authMiddleware');
 
 // Importa multer para upload de arquivo
 const upload = require('./middleware/upload');
@@ -53,22 +52,25 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Definição das rotas da API, organizadas por domínio
 app.use('/api/auth', authRoutes);
+
 app.use('/api/pets', petRoutes);
+
 app.use('/api/vaccines', vaccineRoutes);
 
 /**
  * Exemplo de rota protegida que retorna dados do usuário autenticado
  */
-app.get('/rota-protegida', auth, (req, res) => {
-  res.json({ mensagem: 'Você está autenticado!', usuario: req.user });
+app.get('/rota-protegida', (req, res) => {
+  res.send('Rota acessada sem autenticação');
 });
+
 
 /**
  * Exemplo de rota para upload protegida
  * Aqui usamos o auth para garantir que só usuários autenticados façam upload
  * E multer para processar o upload do arquivo enviado no campo 'arquivo'
  */
-app.post('/upload', auth, upload.single('arquivo'), (req, res) => {
+app.post('/upload', upload.single('arquivo'), (req, res) => {
   res.json({ message: 'Upload realizado com sucesso!', file: req.file });
 });
 

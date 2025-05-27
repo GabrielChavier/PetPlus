@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './Adotepet.css';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.jpeg';
-import { API_BASE } from '../api'; // ✅ Importação da base da API
 
 function Meupet() {
   const navigate = useNavigate();

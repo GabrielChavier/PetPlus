@@ -8,7 +8,7 @@ module.exports = {
   createPet: async (req, res) => {
     const { name, species, breed, gender, age } = req.body;
     const photo = req.file ? req.file.filename : null;
-    const userId = req.user.id;
+    const userId = 1; // Fixado para testes
 
     try {
       const pet = await Pet.create({
@@ -123,4 +123,3 @@ module.exports = {
     }
   },
 };
-

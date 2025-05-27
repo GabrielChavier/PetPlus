@@ -1,23 +1,5 @@
-const jwt = require('jsonwebtoken');
-
-const SECRET = process.env.JWT_SECRET || 'seu_segredo_jwt';
-
-function verificarToken(req, res, next) {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-
-  if (!token) {
-    return res.status(401).json({ message: 'Token não fornecido' });
-  }
-
-  jwt.verify(token, SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ message: 'Token inválido' });
-    }
-
-    req.user = decoded;
-    next();
-  });
-}
-
-module.exports = verificarToken;
+// authMiddleware.js
+module.exports = (req, res, next) => {
+  // Middleware desativado, deixa passar tudo sem checar token
+  next();
+};

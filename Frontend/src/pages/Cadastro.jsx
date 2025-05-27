@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import logo from '../assets/logo.jpeg';
 import pets from '../assets/Pet_Cadastro.png';
-import { API_BASE } from '../api';
 
 export default function Cadastro() {
   const navigate = useNavigate();

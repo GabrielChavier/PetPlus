@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import './CadastroPetAdocao.css';
 import logo from "../assets/logo.jpeg";
 import { useNavigate, Link } from "react-router-dom";
-import { API_BASE } from "../api";  // Importa API_BASE
 
 export default function CadastroPet() {
   const navigate = useNavigate();

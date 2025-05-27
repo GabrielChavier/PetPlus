@@ -42,7 +42,6 @@ body, html {
   padding: 2em;
   background-color: rgba(255, 255, 255, 0.05); /* Fundo branco com transparência */
   border-radius: 20px;
-  backdrop-filter: blur(5px); /* Efeito "vidro fosco" */
   box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Sombra leve */
 }
 

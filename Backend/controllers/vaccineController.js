@@ -2,6 +2,10 @@ const Vaccine = require('../models/Vaccine');
 
 exports.cadastrarVacina = async (req, res) => {
   const { name, date, petId } = req.body;
+
+  // Para testes: considere userId fixo, se precisar em futuras validações
+  const userId = 1;
+
   try {
     const vaccine = await Vaccine.create({ name, date, PetId: petId });
     return res.status(201).json({
@@ -17,7 +21,9 @@ exports.cadastrarVacina = async (req, res) => {
 };
 
 exports.listarVacinasDoUsuario = async (req, res) => {
+  const userId = 1; // Fixado para testes
   const { petId } = req.params;
+
   try {
     const vaccines = await Vaccine.findAll({ where: { PetId: petId } });
     return res.status(200).json({
@@ -33,13 +39,16 @@ exports.listarVacinasDoUsuario = async (req, res) => {
 };
 
 exports.editarVacina = async (req, res) => {
+  const userId = 1; // Fixado para testes
   const { id } = req.params;
   const { name, date } = req.body;
+
   try {
     const vaccine = await Vaccine.findByPk(id);
     if (!vaccine) {
       return res.status(404).json({ message: 'Vacina não encontrada' });
     }
+
     vaccine.name = name || vaccine.name;
     vaccine.date = date || vaccine.date;
     await vaccine.save();
@@ -57,12 +66,15 @@ exports.editarVacina = async (req, res) => {
 };
 
 exports.excluirVacina = async (req, res) => {
+  const userId = 1; // Fixado para testes
   const { id } = req.params;
+
   try {
     const vaccine = await Vaccine.findByPk(id);
     if (!vaccine) {
       return res.status(404).json({ message: 'Vacina não encontrada' });
     }
+
     await vaccine.destroy();
     return res.status(200).json({
       message: 'Vacina excluída com sucesso',

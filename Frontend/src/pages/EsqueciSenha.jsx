@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { API_BASE } from '../api'; // ✅ Importa a base da API
 import './EsqueciSenha.css';
 
 export default function EsqueciSenha() {

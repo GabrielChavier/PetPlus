@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './CadastroVacina.css';
 import logo from '../assets/logo.jpeg';
-import { API_BASE } from '../api'; // ✅ Importação correta da base da API
-import { useNavigate } from 'react-router-dom';
 
 export default function CadastroVacina() {
   const navigate = useNavigate();
