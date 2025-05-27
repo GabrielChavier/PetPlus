@@ -72,6 +72,17 @@ app.post('/upload', auth, upload.single('arquivo'), (req, res) => {
   res.json({ message: 'Upload realizado com sucesso!', file: req.file });
 });
 
+// Middleware para rotas não encontradas (404)
+app.use((req, res, next) => {
+  res.status(404).json({ error: 'Rota não encontrada' });
+});
+
+// Middleware para tratamento de erros (500)
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Erro interno do servidor' });
+});
+
 // Sincroniza os modelos Sequelize com o banco de dados e inicia o servidor
 sequelize.sync({ force: false })
   .then(() => {
