@@ -3,9 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import pets from '../assets/Pet_Cadastro.png';
 
-// URL base da API — ajuste conforme seu backend
-const API_BASE = 'http://localhost:3000';
-
 export default function Cadastro() {
   const navigate = useNavigate();
 
@@ -20,38 +17,33 @@ export default function Cadastro() {
   // Estado para mensagem de erro
   const [error, setError] = useState('');
 
-  // Envio direto para o backend sem validações ou confirmação de senha
   function handleSubmit(event) {
     event.preventDefault();
 
-    fetch(`${API_BASE}/pets`, { // Ajuste '/pets' para a rota correta do seu backend
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        nome,
-        email,
-        cidade,
-        estado,
-        cep,
-        senha
-      })
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error('Erro ao cadastrar.');
-      }
-      return res.json();
-    })
-    .then(data => {
-      setError('');
-      alert('Cadastro realizado com sucesso!');
-      navigate('/login'); // Redireciona para a página de login
-    })
-    .catch(err => {
-      setError(err.message || 'Erro desconhecido.');
-    });
+    // Validação simples para garantir que todos os campos estejam preenchidos
+    if (!nome || !email || !cidade || !estado || !cep || !senha) {
+      setError('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    // Monta um objeto com os dados do usuário
+    const usuario = {
+      nome,
+      email,
+      cidade,
+      estado,
+      cep,
+      senha,
+    };
+
+    // Salva os dados no localStorage (você pode usar sessão, contexto ou outro meio)
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+
+    setError('');
+    alert('Cadastro realizado com sucesso!');
+
+    // Volta para tela de login
+    navigate('/login');
   }
 
   return (
@@ -69,12 +61,14 @@ export default function Cadastro() {
               placeholder="nome"
               value={nome}
               onChange={e => setNome(e.target.value)}
+              required
             />
             <input
               type="email"
               placeholder="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
+              required
             />
             <div className="row">
               <input
@@ -82,12 +76,14 @@ export default function Cadastro() {
                 placeholder="cidade"
                 value={cidade}
                 onChange={e => setCidade(e.target.value)}
+                required
               />
               <input
                 type="text"
                 placeholder="estado"
                 value={estado}
                 onChange={e => setEstado(e.target.value)}
+                required
               />
             </div>
             <input
@@ -95,15 +91,16 @@ export default function Cadastro() {
               placeholder="cep"
               value={cep}
               onChange={e => setCep(e.target.value)}
+              required
             />
             <input
               type="password"
               placeholder="senha"
               value={senha}
               onChange={e => setSenha(e.target.value)}
+              required
             />
 
-            {/* Exibe erro se existir */}
             {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
 
             <div className="btn-area">

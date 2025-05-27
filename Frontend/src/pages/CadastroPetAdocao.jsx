@@ -176,10 +176,10 @@ export default function CadastroPet() {
                 className="btn cancel"
                 onClick={handleCancel}
               >
-                cancelar
+                Cancelar
               </button>
               <button type="submit" className="btn">
-                cadastrar
+                Cadastrar
               </button>
             </div>
           </form>

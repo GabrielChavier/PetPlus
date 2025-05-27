@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 export default function CadastroPetAdocao() {
   const [foto, setFoto] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [mensagemSucesso, setMensagemSucesso] = useState("");
+
   const [formData, setFormData] = useState({
     nome: "",
     especie: "",
@@ -39,40 +41,45 @@ export default function CadastroPetAdocao() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    // Removido o controle de token e alerta de login
+    const novoPet = {
+      nome: formData.nome,
+      especie: formData.especie,
+      raca: formData.raca,
+      sexo: formData.sexo,
+      idade: formData.idade,
+      telefone: formData.telefone,
+      local: formData.local,
+      bio: formData.bio,
+      fotoUrl: previewUrl,
+    };
 
-    const form = new FormData();
-    form.append("name", formData.nome);
-    form.append("species", formData.especie);
-    form.append("breed", formData.raca);
-    form.append("gender", formData.sexo);
-    form.append("age", formData.idade);
-    form.append("phone", formData.telefone);
-    form.append("location", formData.local);
-    form.append("bio", formData.bio);
-    if (foto) form.append("photo", foto);
+    const petsSalvos = JSON.parse(localStorage.getItem("meusPets")) || [];
+    petsSalvos.push(novoPet);
+    localStorage.setItem("meusPets", JSON.stringify(petsSalvos));
 
-    try {
-      const response = await fetch(`${API_BASE}/pets`, {
-        method: "POST",
-        // Removido header Authorization
-        body: form,
-      });
+    // Limpar campos
+    setFormData({
+      nome: "",
+      especie: "",
+      raca: "",
+      sexo: "",
+      idade: "",
+      telefone: "",
+      local: "",
+      bio: "",
+    });
+    setFoto(null);
+    setPreviewUrl(null);
 
-      const data = await response.json();
+    setMensagemSucesso("🐶 Cadastro realizado com sucesso!");
 
-      if (!response.ok) {
-        throw new Error(data.message || "Erro ao cadastrar pet");
-      }
-
-      alert("🐶 Pet cadastrado com sucesso!");
-      navigate("/adote-um-pet");
-    } catch (error) {
-      alert("Erro: " + error.message);
-    }
+    setTimeout(() => {
+      setMensagemSucesso("");
+      navigate("/meupet");
+    }, 2000);
   };
 
   return (
@@ -92,26 +99,21 @@ export default function CadastroPetAdocao() {
       <main className="form-content">
         <div className="form-box">
           <h2>cadastre seu pet para adoção</h2>
+          {mensagemSucesso && <p className="success-message">{mensagemSucesso}</p>}
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="nome"
-              placeholder="nome do pet"
-              onChange={handleChange}
-              required
-            />
+            <input type="text" name="nome" placeholder="nome do pet" value={formData.nome} onChange={handleChange} required />
             <div className="row">
-              <input type="text" name="especie" placeholder="especie" onChange={handleChange} required />
-              <input type="text" name="raca" placeholder="raça" onChange={handleChange} required />
+              <input type="text" name="especie" placeholder="especie" value={formData.especie} onChange={handleChange} required />
+              <input type="text" name="raca" placeholder="raça" value={formData.raca} onChange={handleChange} required />
             </div>
             <div className="row">
-              <input type="text" name="sexo" placeholder="sexo" onChange={handleChange} required />
-              <input type="text" name="idade" placeholder="idade" onChange={handleChange} required />
+              <input type="text" name="sexo" placeholder="sexo" value={formData.sexo} onChange={handleChange} required />
+              <input type="text" name="idade" placeholder="idade" value={formData.idade} onChange={handleChange} required />
             </div>
-            <input type="text" name="telefone" placeholder="telefone" onChange={handleChange} required />
-            <input type="text" name="local" placeholder="local" onChange={handleChange} required />
+            <input type="text" name="telefone" placeholder="telefone" value={formData.telefone} onChange={handleChange} required />
+            <input type="text" name="local" placeholder="local" value={formData.local} onChange={handleChange} required />
             <div className="row">
-              <textarea name="bio" placeholder="biografia" onChange={handleChange}></textarea>
+              <textarea name="bio" placeholder="biografia" value={formData.bio} onChange={handleChange}></textarea>
 
               <button type="button" className="upload-btn" onClick={handleUploadClick}>
                 📷
@@ -136,7 +138,7 @@ export default function CadastroPetAdocao() {
             )}
 
             <div className="btn-area">
-              <button type="button" className="btn cancel" onClick={() => navigate("/adote-um-pet")}>cancelar</button>
+              <button type="button" className="btn cancel" onClick={() => navigate("/meupet")}>cancelar</button>
               <button type="submit" className="btn">cadastrar</button>
             </div>
           </form>

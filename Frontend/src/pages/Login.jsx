@@ -6,20 +6,13 @@ import React, { useState } from "react";
 function Login() {
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
-  const [mensagem, setMensagem] = useState('');
   const navigate = useNavigate();
 
   function handleLogin(e) {
     e.preventDefault();
 
-    // Removeu a validação de usuário e senha
-    // Removeu qualquer chamada real ou simulação de autenticação
-    
-    setMensagem("Login realizado!"); // Mensagem genérica, sem validação
-
-    setTimeout(() => {
-      navigate('/meupet');
-    }, 1000);
+    // Aqui não tem validação, só navega direto
+    navigate('/meupet');
   }
 
   return (
@@ -33,12 +26,14 @@ function Login() {
             placeholder="usuário"
             value={usuario}
             onChange={e => setUsuario(e.target.value)}
+            required
           />
           <input
             type="password"
             placeholder="senha"
             value={senha}
             onChange={e => setSenha(e.target.value)}
+            required
           />
 
           <div className="options">
@@ -50,8 +45,6 @@ function Login() {
 
           <button type="submit" className="login-button">entrar</button>
         </form>
-
-        {mensagem && <p className="mensagem-sucesso">{mensagem}</p>}
 
         <p className="signup">
           Ainda não tem conta? <Link to="/cadastro">Cadastre-se aqui</Link>
