@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from '../assets/logo.jpeg';
 import pets from '../assets/Pet_LandingPage.png';
 import React, { useState } from "react";
-import { API_BASE } from '../api'; // ✅ Importação do API_BASE
+import api from '../api'; // ✅ Importa o Axios com interceptor de token
 
 function Login() {
   const [usuario, setUsuario] = useState('');
@@ -15,37 +15,33 @@ function Login() {
     e.preventDefault();
 
     if (!usuario || !senha) {
-      alert("Preencha usuário e senha!");
+      setMensagem("Preencha usuário e senha!");
       return;
     }
 
     try {
-      // ✅ Substituindo URL fixa por API_BASE
-      const res = await fetch(`${API_BASE}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email: usuario, senha }) // ajuste conforme seu backend
+      const res = await api.post('/login', {
+        email: usuario,
+        senha: senha,
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "Erro ao fazer login");
+      if (!res.data.token) {
+        throw new Error("Token não recebido.");
       }
 
-      // Armazena o token e redireciona
-      localStorage.setItem("token", data.token);
-      setMensagem("Login realizado com sucesso!");
+      // ✅ Armazenar o token no localStorage
+      localStorage.setItem("token", res.data.token);
+
+      setMensagem("✅ Login realizado com sucesso!");
 
       setTimeout(() => {
         navigate('/meupet');
       }, 2000);
 
     } catch (err) {
-      console.error(err);
-      setMensagem("Erro: " + err.message);
+      console.error("Erro ao fazer login:", err);
+      const mensagemErro = err.response?.data?.message || "Erro ao fazer login.";
+      setMensagem("❌ " + mensagemErro);
     }
   }
 
@@ -53,6 +49,7 @@ function Login() {
     <div className="login-container">
       <div className="login-box">
         <h2>Bem-vindo</h2>
+
         <form onSubmit={handleLogin}>
           <input
             type="text"
@@ -66,12 +63,14 @@ function Login() {
             value={senha}
             onChange={e => setSenha(e.target.value)}
           />
+
           <div className="options">
             <label>
               <input type="checkbox" /> lembrar de mim
             </label>
             <Link to="/esqueci-senha">esqueci minha senha</Link>
           </div>
+
           <button type="submit" className="login-button">entrar</button>
         </form>
 

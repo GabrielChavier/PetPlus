@@ -41,4 +41,13 @@ const PetDetalhes = () => {
         <p><strong>Nome:</strong> {pet.name}</p>
         <p><strong>Raça:</strong> {pet.breed}</p>
         <p><strong>Idade:</strong> {pet.age} anos</p>
-        {/* Adicione mais informações se quiser, como desc*
+        {/* Você pode adicionar mais detalhes aqui, como:
+        <p><strong>Descrição:</strong> {pet.description}</p>
+        <p><strong>Peso:</strong> {pet.weight} kg</p>
+        */}
+      </div>
+    </div>
+  );
+};
+
+export default PetDetalhes;

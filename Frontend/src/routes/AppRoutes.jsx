@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import PrivateRoute from '../PrivateRoute'; // ajuste o caminho se o arquivo estiver em outro local
+import PrivateRoute from '../PrivateRoute'; // OK
 import LandingPage from '../pages/LandingPage';
 import Login from '../pages/Login';
 import Cadastro from '../pages/Cadastro';
