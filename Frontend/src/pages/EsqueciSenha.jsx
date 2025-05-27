@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE } from '../api'; // ✅ Importa a base da API
 import './EsqueciSenha.css';
 
 export default function EsqueciSenha() {
@@ -9,17 +10,34 @@ export default function EsqueciSenha() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     if (!email) {
       setMensagem('Por favor, informe seu e-mail.');
       return;
     }
-    // Simula o envio de nova senha por email
-    setMensagem(`Uma nova senha foi enviada para ${email}. Verifique seu e-mail.`);
-    
-    // Opcional: redirecionar para login depois de um tempo
-    setTimeout(() => {
-      navigate('/login');
-    }, 3000);
+
+    // ✅ Envia requisição real ao backend
+    fetch(`${API_BASE}/esqueci-senha`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    })
+      .then(res => {
+        if (!res.ok) throw new Error('Erro ao enviar solicitação');
+        return res.json();
+      })
+      .then(data => {
+        setMensagem(data.mensagem || 'Uma nova senha foi enviada. Verifique seu e-mail.');
+        setTimeout(() => {
+          navigate('/login');
+        }, 3000);
+      })
+      .catch(err => {
+        console.error(err);
+        setMensagem('Erro ao processar solicitação. Verifique o e-mail e tente novamente.');
+      });
   }
 
   return (

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'; // useEffect adicionado
+import React, { useState, useEffect } from 'react';
 import './Adotepet.css';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.jpeg';
+import { API_BASE } from '../api'; // ✅ Importação da base da API
 
 function Meupet() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Meupet() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`/api/pets?search=${searchTerm}`);
+      const response = await fetch(`${API_BASE}/pets?search=${searchTerm}`); // ✅ Caminho corrigido
       if (!response.ok) {
         throw new Error('Erro ao buscar pets');
       }
@@ -34,12 +35,13 @@ function Meupet() {
     }
   };
 
+  // useEffect para carregar pets salvos no localStorage
   useEffect(() => {
-  const petsSalvos = JSON.parse(localStorage.getItem("pets")) || [];
-  setPets(petsSalvos);
-}, []);
+    const petsSalvos = JSON.parse(localStorage.getItem("pets")) || [];
+    setPets(petsSalvos);
+  }, []);
 
-  // 🔁 Chamada automática ao carregar a página
+  // useEffect para buscar pets da API ao carregar
   useEffect(() => {
     handleSearch();
   }, []);
@@ -48,8 +50,8 @@ function Meupet() {
     <div className="app-container">
       <header className="header">
         <div className="logo-area">
-                  <img src={logo} alt="Logo PetPlus" className="logo" />
-                </div>
+          <img src={logo} alt="Logo PetPlus" className="logo" />
+        </div>
         <nav className="navigation">
           <ul className="nav-list">
             <li className="nav-item" onClick={() => handleNavigationClick('Meu Pet')}>Meu Pet</li>
@@ -84,7 +86,7 @@ function Meupet() {
                   <div>
                     <h3>{pet.name}</h3>
                     <p>{pet.breed}</p>
-                    <p>{pet.age} </p>
+                    <p>{pet.age}</p>
                   </div>
                 </div>
               ))

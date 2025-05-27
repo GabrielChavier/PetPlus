@@ -12,10 +12,10 @@ const petRoutes = require('./routes/petRoutes');
 const vaccineRoutes = require('./routes/vaccineRoutes');
 
 // Importa middleware de autenticação (authMiddleware)
-const auth = require('./authMiddleware');
+const auth = require('./middleware/authMiddleware');
 
 // Importa multer para upload de arquivo
-const upload = require('./upload');
+const upload = require('./middleware/upload');
 
 // Cria o aplicativo Express
 const app = express();

@@ -3,6 +3,7 @@ import './CadastroPet.css';
 import logo from "../assets/logo.jpeg";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import { API_BASE } from '../api';  // Importa API_BASE aqui
 
 export default function CadastroPetAdocao() {
   const [foto, setFoto] = useState(null);
@@ -61,10 +62,11 @@ export default function CadastroPetAdocao() {
     if (foto) form.append("photo", foto);
 
     try {
-      const response = await fetch("http://localhost:3000/api/pets", {
+      const response = await fetch(`${API_BASE}/pets`, {  // Usa API_BASE aqui
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
+          // NÃO colocar 'Content-Type' quando usar FormData, o navegador faz isso automaticamente
         },
         body: form,
       });

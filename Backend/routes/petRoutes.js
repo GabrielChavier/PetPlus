@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const petController = require('../controllers/petController');
 const verificarToken = require('../middleware/authMiddleware'); // middleware de autenticação
 const upload = require('../middleware/upload'); // middleware multer para upload

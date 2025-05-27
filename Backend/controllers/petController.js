@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const Pet = require('../models/Pet');
 
 module.exports = {
@@ -6,7 +7,7 @@ module.exports = {
   // ================================
   createPet: async (req, res) => {
     const { name, species, breed, gender, age } = req.body;
-    const photo = req.file ? req.file.filename : null; // Verifica se foi enviada uma imagem
+    const photo = req.file ? req.file.filename : null;
     const userId = req.user.id;
 
     try {
@@ -18,12 +19,18 @@ module.exports = {
         age,
         photo,
         userId,
-        adopted: false // Pet começa como disponível para adoção
+        adopted: false,
       });
 
-      res.status(201).json({ message: 'Pet cadastrado com sucesso', pet });
+      return res.status(201).json({
+        message: 'Pet cadastrado com sucesso',
+        data: pet,
+      });
     } catch (err) {
-      res.status(500).json({ message: 'Erro ao cadastrar pet', error: err.message });
+      return res.status(500).json({
+        message: 'Erro ao cadastrar pet',
+        error: err.message,
+      });
     }
   },
 
@@ -34,7 +41,7 @@ module.exports = {
     const { id } = req.params;
 
     try {
-      const pet = await Pet.findByPk(id); // Busca o pet pelo ID
+      const pet = await Pet.findByPk(id);
 
       if (!pet) {
         return res.status(404).json({ message: 'Pet não encontrado' });
@@ -45,11 +52,17 @@ module.exports = {
       }
 
       pet.adopted = true;
-      await pet.save(); // Marca como adotado
+      await pet.save();
 
-      res.status(200).json({ message: 'Pet adotado com sucesso', pet });
+      return res.status(200).json({
+        message: 'Pet adotado com sucesso',
+        data: pet,
+      });
     } catch (err) {
-      res.status(500).json({ message: 'Erro ao adotar pet', error: err.message });
+      return res.status(500).json({
+        message: 'Erro ao adotar pet',
+        error: err.message,
+      });
     }
   },
 
@@ -58,30 +71,40 @@ module.exports = {
   // ================================
   listAvailablePets: async (req, res) => {
     try {
-      const pets = await Pet.findAll({ where: { adopted: false } }); // Apenas pets não adotados
-      res.status(200).json(pets);
+      const pets = await Pet.findAll({ where: { adopted: false } });
+      return res.status(200).json({ data: pets });
     } catch (err) {
-      res.status(500).json({ message: 'Erro ao listar pets', error: err.message });
+      return res.status(500).json({
+        message: 'Erro ao listar pets disponíveis',
+        error: err.message,
+      });
     }
   },
 
   // ================================
-  // Buscar pets pelo nome
+  // Buscar pets pelo nome (case-insensitive e parcial)
   // ================================
   searchPetByName: async (req, res) => {
     const { name } = req.query;
 
+    if (!name || name.trim() === '') {
+      return res.status(400).json({ message: 'Parâmetro "name" é obrigatório' });
+    }
+
     try {
       const pets = await Pet.findAll({
         where: {
-          name: name,
-          adopted: false // Só busca pets disponíveis
-        }
+          name: { [Op.iLike]: `%${name}%` },
+          adopted: false,
+        },
       });
 
-      res.status(200).json(pets);
+      return res.status(200).json({ data: pets });
     } catch (err) {
-      res.status(500).json({ message: 'Erro ao buscar pet', error: err.message });
+      return res.status(500).json({
+        message: 'Erro ao buscar pets por nome',
+        error: err.message,
+      });
     }
   },
 
@@ -90,10 +113,14 @@ module.exports = {
   // ================================
   getPets: async (req, res) => {
     try {
-      const pets = await Pet.findAll(); // Retorna todos os pets
-      res.status(200).json(pets);
+      const pets = await Pet.findAll();
+      return res.status(200).json({ data: pets });
     } catch (err) {
-      res.status(500).json({ message: 'Erro ao listar todos os pets', error: err.message });
+      return res.status(500).json({
+        message: 'Erro ao listar todos os pets',
+        error: err.message,
+      });
     }
-  }
+  },
 };
+

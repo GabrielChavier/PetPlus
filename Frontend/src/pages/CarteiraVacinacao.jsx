@@ -3,6 +3,7 @@ import logo from '../assets/logo.jpeg';
 import { FaPlusCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { API_BASE } from '../api'; // ✅ Importação correta
 
 export default function CarteiraVacinacao() {
   const [vacinas, setVacinas] = useState([]);
@@ -22,9 +23,32 @@ export default function CarteiraVacinacao() {
     }));
   };
 
-  const adicionarVacina = () => {
-    if (novaVacina.data && novaVacina.tipo) {
-      setVacinas([...vacinas, novaVacina]);
+  const adicionarVacina = async () => {
+    if (!novaVacina.data || !novaVacina.tipo) {
+      alert('Preencha pelo menos a data e o tipo da vacina.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_BASE}/vacinas`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(novaVacina),
+      });
+
+      if (!response.ok) {
+        alert('Erro ao cadastrar a vacina no backend.');
+        return;
+      }
+
+      const nova = await response.json();
+
+      // Atualiza o estado local com a nova vacina retornada pelo backend
+      setVacinas([...vacinas, nova]);
+
+      // Limpa o formulário
       setNovaVacina({
         data: '',
         revacina: '',
@@ -32,8 +56,11 @@ export default function CarteiraVacinacao() {
         veterinario: '',
         clinica: '',
       });
-    } else {
-      alert("Preencha pelo menos a data e o tipo da vacina.");
+
+      alert('Vacina cadastrada com sucesso!');
+    } catch (error) {
+      console.error('Erro ao cadastrar vacina:', error);
+      alert('Erro ao conectar com o servidor.');
     }
   };
 
@@ -60,6 +87,7 @@ export default function CarteiraVacinacao() {
               name="data"
               value={novaVacina.data}
               onChange={handleChange}
+              required
             />
             <input
               type="date"
@@ -73,6 +101,7 @@ export default function CarteiraVacinacao() {
               placeholder="tipo"
               value={novaVacina.tipo}
               onChange={handleChange}
+              required
             />
             <input
               type="text"

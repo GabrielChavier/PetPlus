@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import './Meupet.css';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.jpeg';
+import { API_BASE } from '../api'; // ✅ Importando a constante API_BASE
 
 function Meupet() {
   const navigate = useNavigate();
 
-  // Estado para armazenar lista de pets
   const [pets, setPets] = useState([]);
-  // Estado para guardar o texto da pesquisa
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleNavigationClick = (section) => {
@@ -23,10 +22,10 @@ function Meupet() {
     }
   };
 
-  // Função para buscar pets no backend (API)
   const handleSearch = async () => {
     try {
-      const response = await fetch(`/api/pets?search=${searchTerm}`);
+      // ✅ Usando API_BASE no fetch
+      const response = await fetch(`${API_BASE}/pets?search=${searchTerm}`);
       if (!response.ok) {
         throw new Error('Erro ao buscar pets');
       }
@@ -41,7 +40,6 @@ function Meupet() {
     navigate('/cadastro-pet-adocao');
   };
 
-  // Função para logout, redireciona para tela de login
   const handleLogout = () => {
     // Aqui você pode limpar tokens, dados de sessão etc, se usar autenticação
     navigate('/login');
@@ -59,7 +57,6 @@ function Meupet() {
             <li className="nav-item" onClick={() => handleNavigationClick('Cadastrar um Pet')}>Cadastrar um Pet</li>
             <li className="nav-item" onClick={() => handleNavigationClick('Adote um Pet')}>Adote um Pet</li>
             <li className="nav-item" onClick={() => handleNavigationClick('Carteira de Vacinação')}>Carteira de Vacinação</li>
-            {/* Botão Sair */}
             <li className="nav-item logout-button" onClick={handleLogout}>Sair</li>
           </ul>
         </nav>

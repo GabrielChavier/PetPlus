@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import logo from '../assets/logo.jpeg';
 import pets from '../assets/Pet_Cadastro.png';
+import { API_BASE } from '../api';
 
 export default function Cadastro() {
   const navigate = useNavigate();
@@ -19,30 +20,52 @@ export default function Cadastro() {
   // Estado para mensagem de erro
   const [error, setError] = useState('');
 
-  // Função para validar formulário no submit
+  // Função para validar formulário e enviar dados ao backend
   function handleSubmit(event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  if (!nome || !email || !cidade || !estado || !cep || !senha || !confirmarSenha) {
-    setError('Por favor, preencha todos os campos.');
-    return;
+    if (!nome || !email || !cidade || !estado || !cep || !senha || !confirmarSenha) {
+      setError('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    if (senha !== confirmarSenha) {
+      setError('As senhas não conferem.');
+      return;
+    }
+
+    fetch(`${API_BASE}/pets`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        nome,
+        email,
+        cidade,
+        estado,
+        cep,
+        senha
+      })
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Erro ao cadastrar.');
+      }
+      return res.json();
+    })
+    .then(data => {
+      setError('');
+      alert('Cadastro realizado com sucesso!');
+      navigate('/meupet');
+    })
+    .catch(err => {
+      setError(err.message || 'Erro desconhecido.');
+    });
   }
-
-  if (senha !== confirmarSenha) {
-    setError('As senhas não conferem.');
-    return;
-  }
-
-  setError('');
-  alert('Cadastro realizado com sucesso!');
-
-  // Redireciona para a página Meupet após o cadastro
-  navigate('/meupet');
-}
 
   return (
     <div className="cadastro-container">
-
       <main className="cadastro-content">
         <div className="image-area">
           <img src={pets} alt="pets" className="pets-img" />

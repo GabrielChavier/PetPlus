@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from '../assets/logo.jpeg';
 import pets from '../assets/Pet_LandingPage.png';
 import React, { useState } from "react";
+import { API_BASE } from '../api'; // ✅ Importação do API_BASE
 
 function Login() {
   const [usuario, setUsuario] = useState('');
@@ -19,12 +20,13 @@ function Login() {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/login", {
+      // ✅ Substituindo URL fixa por API_BASE
+      const res = await fetch(`${API_BASE}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email: usuario, senha }) // ajuste se seu backend usa outros nomes
+        body: JSON.stringify({ email: usuario, senha }) // ajuste conforme seu backend
       });
 
       const data = await res.json();

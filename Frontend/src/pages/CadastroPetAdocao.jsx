@@ -1,51 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import './CadastroPetAdocao.css';
 import logo from "../assets/logo.jpeg";
 import { useNavigate, Link } from "react-router-dom";
+import { API_BASE } from "../api";  // Importa API_BASE
 
 export default function CadastroPet() {
   const navigate = useNavigate();
 
-  // Estados para armazenar os dados do formulário
   const [nome, setNome] = useState("");
   const [especie, setEspecie] = useState("");
   const [raca, setRaca] = useState("");
   const [sexo, setSexo] = useState("");
   const [idade, setIdade] = useState("");
-  const [foto, setFoto] = useState(null); // Estado para armazenar o arquivo da foto do pet
+  const [foto, setFoto] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [mensagemSucesso, setMensagemSucesso] = useState("");
 
+  const fileInputRef = useRef(null);
 
-  const [mensagemSucesso, setMensagemSucesso] = useState(""); 
-  // Estado para mostrar mensagem de cadastro realizado com sucesso
-
-  // Referência para o input file escondido (para abrir via botão)
-  const fileInputRef = React.useRef(null);
-
-  // Função para navegar para a página /meupet ao cancelar o cadastro
   const handleCancel = () => {
     navigate("/meupet");
   };
 
-  // Abre o seletor de arquivos quando o botão de upload for clicado
   const handleUploadClick = () => {
     fileInputRef.current.click();
   };
 
-  // Atualiza o estado 'foto' com o arquivo selecionado pelo usuário
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setFoto(file);
+      const imageUrl = URL.createObjectURL(file);
+      setPreviewUrl(imageUrl);
     }
   };
 
-  
-  // Função que trata o envio do formulário (submit)
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Evita recarregar a página ao enviar
+    event.preventDefault();
 
-    // Cria um objeto FormData para enviar os dados e o arquivo
     const formData = new FormData();
     formData.append("nome", nome);
     formData.append("especie", especie);
@@ -53,45 +45,37 @@ export default function CadastroPet() {
     formData.append("sexo", sexo);
     formData.append("idade", idade);
 
-    // Se o usuário enviou uma foto, adiciona no FormData
     if (foto) {
       formData.append("foto", foto);
     }
 
     try {
-      // Envia os dados para o backend via fetch, usando POST e enviando o FormData
-      const response = await fetch("http://localhost:3000/pets", {
+      const response = await fetch(`${API_BASE}/pets`, {  // Usando API_BASE aqui
         method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
-        // Se o backend retornar erro, exibe alerta para o usuário
         alert("Erro ao cadastrar pet.");
         return;
       }
 
-      // Se chegou aqui, o cadastro foi um sucesso
-
-      // Limpa os estados para zerar o formulário
       setNome("");
       setEspecie("");
       setRaca("");
       setSexo("");
       setIdade("");
       setFoto(null);
+      setPreviewUrl(null);
 
-      // Exibe a mensagem de sucesso na tela
       setMensagemSucesso("Cadastro realizado com sucesso!");
 
-      // Opcional: depois de alguns segundos, limpa a mensagem e redireciona
       setTimeout(() => {
-        setMensagemSucesso(""); // limpa a mensagem
-        navigate("/meupet"); // redireciona para a página /meupet
-      }, 3000); // 3 segundos
+        setMensagemSucesso("");
+        navigate("/meupet");
+      }, 3000);
 
     } catch (error) {
-      // Se der erro na comunicação, exibe mensagem no console e alerta ao usuário
       console.error("Erro na requisição:", error);
       alert("Erro na comunicação com o servidor.");
     }
@@ -113,14 +97,12 @@ export default function CadastroPet() {
         <div className="form-box">
           <h2>cadastre seu pet</h2>
 
-          {/* Exibe mensagem de sucesso se existir */}
           {mensagemSucesso && (
             <p style={{ color: "green", fontWeight: "bold", marginBottom: "15px" }}>
               {mensagemSucesso}
             </p>
           )}
 
-          {/* Formulário com onSubmit que chama handleSubmit */}
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -163,7 +145,6 @@ export default function CadastroPet() {
             </div>
 
             <div className="upload-area">
-              {/* Botão que abre seletor de arquivos */}
               <button
                 type="button"
                 className="upload-btn"
@@ -172,7 +153,6 @@ export default function CadastroPet() {
                 📷
               </button>
 
-              {/* Input file escondido */}
               <input
                 type="file"
                 accept="image/*"
@@ -181,12 +161,17 @@ export default function CadastroPet() {
                 style={{ display: "none" }}
               />
 
-              {/* Mostra nome da imagem selecionada */}
               {foto && <p>Imagem selecionada: {foto.name}</p>}
+              {previewUrl && (
+                <img
+                  src={previewUrl}
+                  alt="Pré-visualização"
+                  style={{ marginTop: "10px", maxWidth: "200px", borderRadius: "8px" }}
+                />
+              )}
             </div>
 
             <div className="btn-area">
-              {/* Botão cancelar navega para /meupet */}
               <button
                 type="button"
                 className="btn cancel"
@@ -194,8 +179,6 @@ export default function CadastroPet() {
               >
                 cancelar
               </button>
-
-              {/* Botão submit envia o formulário */}
               <button type="submit" className="btn">
                 cadastrar
               </button>
