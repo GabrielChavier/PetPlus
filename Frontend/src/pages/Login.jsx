@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from '../assets/logo.jpeg';
 import pets from '../assets/Pet_LandingPage.png';
 import React, { useState } from "react";
-localStorage.setItem("token", data.token);
-
 
 function Login() {
   const [usuario, setUsuario] = useState('');
@@ -12,25 +10,45 @@ function Login() {
   const [mensagem, setMensagem] = useState('');
   const navigate = useNavigate();
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
 
-    if (usuario && senha) {
-      // Mostra mensagem de sucesso
+    if (!usuario || !senha) {
+      alert("Preencha usuário e senha!");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: usuario, senha }) // ajuste se seu backend usa outros nomes
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Erro ao fazer login");
+      }
+
+      // Armazena o token e redireciona
+      localStorage.setItem("token", data.token);
       setMensagem("Login realizado com sucesso!");
 
-      // Redireciona após 2 segundos
       setTimeout(() => {
         navigate('/meupet');
       }, 2000);
-    } else {
-      alert("Preencha usuário e senha!");
+
+    } catch (err) {
+      console.error(err);
+      setMensagem("Erro: " + err.message);
     }
   }
 
   return (
     <div className="login-container">
-
       <div className="login-box">
         <h2>Bem-vindo</h2>
         <form onSubmit={handleLogin}>
@@ -55,7 +73,6 @@ function Login() {
           <button type="submit" className="login-button">entrar</button>
         </form>
 
-        {/* Mensagem de sucesso */}
         {mensagem && <p className="mensagem-sucesso">{mensagem}</p>}
 
         <p className="signup">

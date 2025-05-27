@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import './PetDetalhes.css'; // <-- Importa o CSS
 
 const PetDetalhes = () => {
   const { id } = useParams();
 
-  // Aqui você pode fazer requisição para buscar dados do pet pelo id,
-  // ou usar estado global / contexto
-
   return (
-    <div>
+    <div className="pet-detalhes-container">
       <h1>Detalhes do Pet</h1>
-      <p>ID do Pet: {id}</p>
-      {/* Renderize os detalhes do pet aqui */}
+      <p className="pet-id">ID do Pet: <span>{id}</span></p>
+
+      {/* Aqui você pode renderizar mais detalhes futuramente */}
+      <div className="pet-info">
+        <p><strong>Nome:</strong> Fofinho</p>
+        <p><strong>Raça:</strong> Poodle</p>
+        <p><strong>Idade:</strong> 2 anos</p>
+      </div>
     </div>
   );
 };

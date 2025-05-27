@@ -1,0 +1,41 @@
+.pet-detalhes-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #f0f4f8;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.pet-detalhes-container h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.pet-id {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+  text-align: center;
+}
+
+.pet-id span {
+  font-weight: bold;
+  color: #0077cc;
+}
+
+.pet-info {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.pet-info p {
+  margin: 10px 0;
+  font-size: 16px;
+}
