@@ -23,7 +23,7 @@ function Meupet() {
 
   const handleSearch = async () => {
     try {
-      // ✅ Usando API_BASE no fetch
+      // Mantém o fetch, mas sem verificação de autenticação
       const response = await fetch(`${API_BASE}/pets?search=${searchTerm}`);
       if (!response.ok) {
         throw new Error('Erro ao buscar pets');
@@ -40,7 +40,7 @@ function Meupet() {
   };
 
   const handleLogout = () => {
-    // Aqui você pode limpar tokens, dados de sessão etc, se usar autenticação
+    // Removeu limpeza de tokens ou sessão
     navigate('/login');
   };
 

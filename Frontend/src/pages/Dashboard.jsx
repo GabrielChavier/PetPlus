@@ -7,21 +7,6 @@ export default function Dashboard() {
     totalVacinas: 0,
   });
 
-  useEffect(() => {
-    fetch(`${API_BASE}/dashboard`)
-      .then(res => {
-        if (!res.ok) throw new Error('Erro ao buscar dados do dashboard');
-        return res.json();
-      })
-      .then(data => {
-        setResumo(data);
-      })
-      .catch(err => {
-        console.error(err);
-        alert('Não foi possível carregar os dados do dashboard.');
-      });
-  }, []);
-
   return (
     <div style={{ padding: '2rem' }}>
       <h1>Bem-vindo ao Dashboard</h1>

@@ -1,8 +1,10 @@
 import './Cadastro.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import logo from '../assets/logo.jpeg';
 import pets from '../assets/Pet_Cadastro.png';
+
+// URL base da API — ajuste conforme seu backend
+const API_BASE = 'http://localhost:3000';
 
 export default function Cadastro() {
   const navigate = useNavigate();
@@ -14,26 +16,15 @@ export default function Cadastro() {
   const [estado, setEstado] = useState('');
   const [cep, setCep] = useState('');
   const [senha, setSenha] = useState('');
-  const [confirmarSenha, setConfirmarSenha] = useState('');
 
   // Estado para mensagem de erro
   const [error, setError] = useState('');
 
-  // Função para validar formulário e enviar dados ao backend
+  // Envio direto para o backend sem validações ou confirmação de senha
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (!nome || !email || !cidade || !estado || !cep || !senha || !confirmarSenha) {
-      setError('Por favor, preencha todos os campos.');
-      return;
-    }
-
-    if (senha !== confirmarSenha) {
-      setError('As senhas não conferem.');
-      return;
-    }
-
-    fetch(`${API_BASE}/pets`, {
+    fetch(`${API_BASE}/pets`, { // Ajuste '/pets' para a rota correta do seu backend
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -56,7 +47,7 @@ export default function Cadastro() {
     .then(data => {
       setError('');
       alert('Cadastro realizado com sucesso!');
-      navigate('/meupet');
+      navigate('/login'); // Redireciona para a página de login
     })
     .catch(err => {
       setError(err.message || 'Erro desconhecido.');
@@ -71,7 +62,7 @@ export default function Cadastro() {
         </div>
 
         <div className="form-card">
-          <h2>cadastre-se</h2>
+          <h2>Cadastre-se</h2>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -111,12 +102,6 @@ export default function Cadastro() {
               value={senha}
               onChange={e => setSenha(e.target.value)}
             />
-            <input
-              type="password"
-              placeholder="confirmar senha"
-              value={confirmarSenha}
-              onChange={e => setConfirmarSenha(e.target.value)}
-            />
 
             {/* Exibe erro se existir */}
             {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
@@ -127,10 +112,10 @@ export default function Cadastro() {
                 className="btn cancel"
                 onClick={() => navigate('/login')}
               >
-                cancelar
+                Cancelar
               </button>
 
-              <button type="submit" className="btn">entrar</button>
+              <button type="submit" className="btn">Cadastrar</button>
             </div>
           </form>
         </div>

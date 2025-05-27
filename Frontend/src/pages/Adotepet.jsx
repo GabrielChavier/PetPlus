@@ -21,26 +21,29 @@ function Meupet() {
     }
   };
 
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(`${API_BASE}/pets?search=${searchTerm}`); // ✅ Caminho corrigido
-      if (!response.ok) {
-        throw new Error('Erro ao buscar pets');
-      }
-      const data = await response.json();
-      setPets(data);
-    } catch (error) {
-      console.error(error);
+  // Mock de pets caso não tenha nada no localStorage
+  const mockPets = [
+    { id: 1, name: 'Rex', breed: 'Labrador', age: '3 anos', image: '' },
+    { id: 2, name: 'Mimi', breed: 'Poodle', age: '2 anos', image: '' },
+    { id: 3, name: 'Toby', breed: 'Beagle', age: '4 anos', image: '' },
+  ];
+
+  // Função para filtrar pets localmente
+  const handleSearch = () => {
+    const allPets = JSON.parse(localStorage.getItem("pets")) || mockPets;
+
+    if (!searchTerm) {
+      setPets(allPets);
+    } else {
+      const filtered = allPets.filter(pet =>
+        pet.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        pet.breed.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setPets(filtered);
     }
   };
 
-  // useEffect para carregar pets salvos no localStorage
-  useEffect(() => {
-    const petsSalvos = JSON.parse(localStorage.getItem("pets")) || [];
-    setPets(petsSalvos);
-  }, []);
-
-  // useEffect para buscar pets da API ao carregar
+  // Carrega pets do localStorage ou mock ao montar o componente
   useEffect(() => {
     handleSearch();
   }, []);

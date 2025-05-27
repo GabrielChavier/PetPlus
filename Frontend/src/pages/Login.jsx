@@ -12,13 +12,10 @@ function Login() {
   function handleLogin(e) {
     e.preventDefault();
 
-    if (!usuario || !senha) {
-      setMensagem("Preencha usuário e senha!");
-      return;
-    }
-
-    // Simula login bem-sucedido sem autenticação real
-    setMensagem("✅ Login realizado com sucesso!");
+    // Removeu a validação de usuário e senha
+    // Removeu qualquer chamada real ou simulação de autenticação
+    
+    setMensagem("Login realizado!"); // Mensagem genérica, sem validação
 
     setTimeout(() => {
       navigate('/meupet');

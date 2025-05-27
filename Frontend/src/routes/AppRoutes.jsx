@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import PrivateRoute from '../PrivateRoute'; // OK
 import LandingPage from '../pages/LandingPage';
 import Login from '../pages/Login';
 import Cadastro from '../pages/Cadastro';
@@ -24,63 +23,14 @@ export default function AppRoutes() {
       <Route path="/esqueci-senha" element={<EsqueciSenha />} />
       <Route path="/adote-um-pet" element={<Adotepet />} />
 
-      {/* Rotas protegidas */}
-      <Route
-        path="/dashboard"
-        element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/meupet"
-        element={
-          <PrivateRoute>
-            <Meupet />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/meupet/:id"
-        element={
-          <PrivateRoute>
-            <PetDetalhes />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/cadastro-pet"
-        element={
-          <PrivateRoute>
-            <CadastroPet />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/cadastro-pet-adocao"
-        element={
-          <PrivateRoute>
-            <CadastroPetAdocao />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/cadastro-de-vacina"
-        element={
-          <PrivateRoute>
-            <CadastroVacina />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/carteira-vacinacao"
-        element={
-          <PrivateRoute>
-            <CarteiraVacinacao />
-          </PrivateRoute>
-        }
-      />
+      {/* Rotas abertas (sem PrivateRoute) */}
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/meupet" element={<Meupet />} />
+      <Route path="/meupet/:id" element={<PetDetalhes />} />
+      <Route path="/cadastro-pet" element={<CadastroPet />} />
+      <Route path="/cadastro-pet-adocao" element={<CadastroPetAdocao />} />
+      <Route path="/cadastro-de-vacina" element={<CadastroVacina />} />
+      <Route path="/carteira-vacinacao" element={<CarteiraVacinacao />} />
 
       {/* Página 404 */}
       <Route path="*" element={<NotFound />} />

@@ -42,12 +42,7 @@ export default function CadastroPetAdocao() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      alert("Você precisa estar logado para cadastrar um pet.");
-      return;
-    }
+    // Removido o controle de token e alerta de login
 
     const form = new FormData();
     form.append("name", formData.nome);
@@ -61,12 +56,9 @@ export default function CadastroPetAdocao() {
     if (foto) form.append("photo", foto);
 
     try {
-      const response = await fetch(`${API_BASE}/pets`, {  // Usa API_BASE aqui
+      const response = await fetch(`${API_BASE}/pets`, {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          // NÃO colocar 'Content-Type' quando usar FormData, o navegador faz isso automaticamente
-        },
+        // Removido header Authorization
         body: form,
       });
 
