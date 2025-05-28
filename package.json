@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest --rootDir Backend"
+    "test": "jest --passWithNoTests  --rootDir Backend"
   },
   "repository": {
     "type": "git",

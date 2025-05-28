@@ -2,9 +2,12 @@ const User = require('../models/User');
 
 // Registro sem validações ou criptografia
 exports.register = async (req, res) => {
-  const { nome, email, senha, tipo } = req.body;
+  //const { nome, email, senha, tipo } = req.body;
+  console.log(req.body);
+  console.log("execuntado");
   try {
     const novoUsuario = await User.create({ nome, email, senha, tipo });
+    
     res.status(201).json({
       message: 'Usuário criado (sem segurança)',
       user: {

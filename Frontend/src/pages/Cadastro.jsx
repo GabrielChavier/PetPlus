@@ -17,34 +17,53 @@ export default function Cadastro() {
   // Estado para mensagem de erro
   const [error, setError] = useState('');
 
-  function handleSubmit(event) {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const API_BASE = "http://localhost:3000/api"; // Defina a URL base da sua API aqui
+    const formData = new FormData();
+    //http://localhost:3000/auth/register
 
-    // Validação simples para garantir que todos os campos estejam preenchidos
-    if (!nome || !email || !cidade || !estado || !cep || !senha) {
-      setError('Por favor, preencha todos os campos.');
-      return;
+    formData.append("nome", nome);
+    formData.append("email", email);
+    formData.append("cidade", cidade);
+    formData.append("cep", cep);
+    formData.append("senha", senha);
+
+    console.log(nome);
+    try {
+      const response = await fetch(`${API_BASE}/auth/register`, {  // Usando API_BASE aqui
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        alert("Erro o usuário.");
+        return;
+      }
+
+      setCep("");
+      setCidade("");
+      setEmail("");
+      setNome("");
+      setSenha("");
+      setEstado("");
+
+      setMensagemSucesso("Cadastro realizado com sucesso!");
+
+      setTimeout(() => {
+        setMensagemSucesso("");
+        navigate("/meupet");
+      }, 3000);
+
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+      alert("Erro na comunicação com o servidor.");
     }
+  };
 
-    // Monta um objeto com os dados do usuário
-    const usuario = {
-      nome,
-      email,
-      cidade,
-      estado,
-      cep,
-      senha,
-    };
 
-    // Salva os dados no localStorage (você pode usar sessão, contexto ou outro meio)
-    localStorage.setItem('usuario', JSON.stringify(usuario));
-
-    setError('');
-    alert('Cadastro realizado com sucesso!');
-
-    // Volta para tela de login
-    navigate('/login');
-  }
+  
 
   return (
     <div className="cadastro-container">
@@ -60,14 +79,14 @@ export default function Cadastro() {
               type="text"
               placeholder="nome"
               value={nome}
-              onChange={e => setNome(e.target.value)}
+              onChange={(e) => setNome(e.target.value)}
               required
             />
             <input
               type="email"
               placeholder="email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <div className="row">
@@ -75,14 +94,14 @@ export default function Cadastro() {
                 type="text"
                 placeholder="cidade"
                 value={cidade}
-                onChange={e => setCidade(e.target.value)}
+                onChange={(e) => setCidade(e.target.value)}
                 required
               />
               <input
                 type="text"
                 placeholder="estado"
                 value={estado}
-                onChange={e => setEstado(e.target.value)}
+                onChange={(e) => setEstado(e.target.value)}
                 required
               />
             </div>
@@ -90,14 +109,14 @@ export default function Cadastro() {
               type="text"
               placeholder="cep"
               value={cep}
-              onChange={e => setCep(e.target.value)}
+              onChange={(e) => setCep(e.target.value)}
               required
             />
             <input
               type="password"
               placeholder="senha"
               value={senha}
-              onChange={e => setSenha(e.target.value)}
+              onChange={(e) => setSenha(e.target.value)}
               required
             />
 

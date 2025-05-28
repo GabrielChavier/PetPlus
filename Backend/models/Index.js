@@ -20,6 +20,16 @@ async function criarUsuarioTeste() {
       senha: '123456'
     });
 
+    const pet = await Pet.create({
+      nome: 'Rex',
+      especie: 'Cachorro',
+      raca: 'Labrador',
+      sexo: 'Macho',
+      idade: 4,
+      userId: usuario.id
+    });
+
+
     console.log('Usuário de teste criado:', usuario.toJSON());
   } catch (error) {
     console.error('Erro ao criar usuário:', error);

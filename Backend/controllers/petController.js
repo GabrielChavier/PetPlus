@@ -6,11 +6,17 @@ module.exports = {
   // Cadastrar novo pet
   // ================================
   createPet: async (req, res) => {
-    const { name, species, breed, gender, age } = req.body;
+    //const { name, species, breed, gender, age } = req.body;
     const photo = req.file ? req.file.filename : null;
-    const userId = 1; // Fixado para testes
+    const userId = 100; // Fixado para testess
+    const name = req.body['nome'];
+    const species = req.body['especie'];
+    const breed = req.body['raca'];
+    const gender = req.body['sexo'];
+    let age = req.body['idade'];
 
     try {
+      age = parseInt(age);
       const pet = await Pet.create({
         name,
         species,
@@ -27,6 +33,7 @@ module.exports = {
         data: pet,
       });
     } catch (err) {
+      console.log(err);
       return res.status(500).json({
         message: 'Erro ao cadastrar pet',
         error: err.message,

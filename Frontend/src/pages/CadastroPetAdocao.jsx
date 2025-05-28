@@ -3,6 +3,8 @@ import './CadastroPetAdocao.css';
 import logo from "../assets/logo.jpeg";
 import { useNavigate, Link } from "react-router-dom";
 
+
+
 export default function CadastroPet() {
   const navigate = useNavigate();
 
@@ -36,7 +38,7 @@ export default function CadastroPet() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    const API_BASE = "http://localhost:3000/api"; // Defina a URL base da sua API aqui
     const formData = new FormData();
     formData.append("nome", nome);
     formData.append("especie", especie);

@@ -1,12 +1,13 @@
 const express = require("express"); // Importa o framework Express
 const router = express.Router();    // Cria um "mini aplicativo" de rotas, isolado
 
-const authController = require("../controllers/authController"); 
+const authController = require("../controllers/authController");
+console.log(router.link);
 // Importa o controlador de autenticação, que contém as funções register e login
 router.post("/register", authController.register);
 // Define a rota POST /register
 // Quando essa rota for chamada, ela executa a função register do authController
-// Exemplo de uso: POST http://localhost:3000/auth/register
+// Exemplo de uso: POST http://localhost:3000/api/auth/register
 // Espera-se um corpo (body) como:
 // {
 //   "nome": "João",
