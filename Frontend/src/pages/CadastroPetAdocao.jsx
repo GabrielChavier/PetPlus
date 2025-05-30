@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import './CadastroPetAdocao.css';
-import logo from "../assets/logo.jpeg";
+import logo from '../assets/PetplusAlpha.jpeg';
 import { useNavigate, Link } from "react-router-dom";
 
 

@@ -25,12 +25,17 @@ html, body {
   background: rgba(255, 255, 255, 0.15);
   padding: 30px 40px;
   border-radius: 12px;
+  width: 400px;
   max-width: 400px;
   margin: 40px auto 20px auto;
   color: white;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-
+.checkbox{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
 /* Título */
 .login-box h2 {
   text-align: center;
@@ -103,7 +108,8 @@ html, body {
 }
 
 .pets-image img {
-  max-width: 300px;
+  width: 400px;
+  max-width: 400px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }

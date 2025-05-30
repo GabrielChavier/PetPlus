@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Adotepet.css';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.jpeg';
+import logo from '../assets/PetplusAlpha.jpeg';
 
 function Meupet() {
   const navigate = useNavigate();

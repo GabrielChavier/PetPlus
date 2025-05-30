@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './CadastroVacina.css';
-import logo from '../assets/logo.jpeg';
+import logo from '../assets/PetplusAlpha.jpeg';
 
 export default function CadastroVacina() {
   const navigate = useNavigate();

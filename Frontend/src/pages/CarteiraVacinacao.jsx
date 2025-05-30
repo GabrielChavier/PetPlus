@@ -1,5 +1,5 @@
 import './CarteiraVacinacao.css';
-import logo from '../assets/logo.jpeg';
+import logo from '../assets/PetplusAlpha.jpeg';
 import { FaPlusCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';

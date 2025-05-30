@@ -37,7 +37,7 @@ function Login() {
           />
 
           <div className="options">
-            <label>
+            <label class="checkbox">
               <input type="checkbox" /> lembrar de mim
             </label>
             <Link to="/esqueci-senha">esqueci minha senha</Link>
