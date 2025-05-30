@@ -23,9 +23,9 @@ function Meupet() {
 
   // Mock de pets caso não tenha nada no localStorage
   const mockPets = [
-    { id: 1, name: 'Rex', breed: 'Labrador', age: '3 anos', image: '' },
-    { id: 2, name: 'Mimi', breed: 'Poodle', age: '2 anos', image: '' },
-    { id: 3, name: 'Toby', breed: 'Beagle', age: '4 anos', image: '' },
+    { id: 1, name: 'Rex', breed: 'Labrador', age: '3 anos', image: '/imagens/labrador.jpg' },
+    { id: 2, name: 'Mimi', breed: 'Poodle', age: '2 anos', image: '/imagens/poodle.jpeg' },
+    { id: 3, name: 'Toby', breed: 'Beagle', age: '4 anos', image: '/imagens/beagle.jpeg' },
   ];
 
   // Função para filtrar pets localmente
