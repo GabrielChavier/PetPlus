@@ -149,5 +149,6 @@
   }
 
   .navigation .nav-list {
-    flex-d
-  }}
+    flex-direction: column;
+  }
+}
